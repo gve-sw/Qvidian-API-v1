@@ -28,7 +28,7 @@ print common_client.HasPermissionsResponse
 
 
 ## Contacts:
-Conterbutions needed to compleet the API
+Contributions needed to complete the API
 CISCO Global Virtual Engineering
 
 
