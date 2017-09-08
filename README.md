@@ -6,7 +6,7 @@ Install Python [PIP](https://packaging.python.org/installing/).
 
 using pip install the package qvidianapi to your envirenement 
 ```sh
-~$ pip install git+http://gitlab.cisco.com/agabdelb/qvidianapi.git
+~$ pip install git+https://github.com/cisco-gve/Qvidian-API-v1.git
 ```
 
 run basic login to qvidian and chek permissions
@@ -28,7 +28,8 @@ print common_client.HasPermissionsResponse
 
 
 ## Contacts:
-Abdellbar@gmail.com
+Conterbutions needed to compleet the API
+
 
 ## License
 Please see [LICENSE](https://github.com/Abdellbar/qvidianapi/blob/master/LICENSE).
