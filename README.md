@@ -4,7 +4,7 @@ A Nice Python API V1 to [Qvidian.com](http://Qvidian.com/)
 # Install
 Install Python [PIP](https://packaging.python.org/installing/).
 
-using pip install the package qvidianapi to your envirenement 
+using pip install the package qvidianapi to your environment 
 ```sh
 ~$ pip install git+https://github.com/cisco-gve/Qvidian-API-v1.git
 ```
