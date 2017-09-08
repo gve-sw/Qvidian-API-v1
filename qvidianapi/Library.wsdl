@@ -1,0 +1,839 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://qvidian.com/webservices/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://qvidian.com/webservices/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://qvidian.com/webservices/">
+      <s:element name="libraryFolderGetTop">
+        <s:complexType />
+      </s:element>
+      <s:element name="libraryFolderGetTopResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="libraryFolderGetTopResult" type="tns:LibraryFolder" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LibraryFolder">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="LibraryFolderID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LibraryParentFolderID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Enabled" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateCreated" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedByUserID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreatedByUserName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChildFolderCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalChildFolderCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContentCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalContentCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Owners" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrentOwnerIDs" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="UpdatedOwnerIDs" type="tns:ArrayOfInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="ViewPerm" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="NewContentPerm" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ViewContentPerm" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="EditContentPerm" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubmitContentPerm" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="NewFolderPerm" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ManagePerm" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="OwnerPerm" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="QvidianCredentialHeader" type="tns:QvidianCredentialHeader" />
+      <s:complexType name="QvidianCredentialHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AuthenticationToken" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="libraryFoldersGetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="parentFolderID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="libraryFoldersGetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="libraryFoldersGetListResult" type="tns:ArrayOfLibraryFolder" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLibraryFolder">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="LibraryFolder" nillable="true" type="tns:LibraryFolder" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="libraryFolderContentGetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="folderID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="libraryFolderContentGetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="libraryFolderContentGetListResult" type="tns:ArrayOfContent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfContent">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Content" nillable="true" type="tns:Content" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Content">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ContentID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Revision" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LibraryFolderID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="LibraryFolderTitle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LibraryFolderPath" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContentText" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Enabled" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Submitted" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="NewContent" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="BulkLoaded" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsBundle" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContentType" type="tns:eContentTypes" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContentTypeName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LCID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="LCIDLanguage" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProjectRestrictions" type="tns:eProjectRestrictions" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectRestrictionsName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AlertActive" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AlertEnabled" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="AlertText" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContactInfo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateCreated" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateCreatedString" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateToExpire" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateToExpireString" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Expired" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedByUserID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreatedByUserName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateLastModified" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateLastModifiedString" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastModifiedByUserID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastModifiedByUserName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CheckedOut" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateCheckedOut" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateCheckedOutString" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CheckedOutByUserID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CheckedOutByUserName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateCheckedIn" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateCheckedInString" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CheckedInByUserID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CheckedInByUserName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateLastUsed" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateLastUsedString" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastUsedByUserID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastUsedByUserName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TimesUsedCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CurrentUsage" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasFeedback" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssignedTerms" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UpdatedKeywordIDs" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="LearnedTerms" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UpdatedLearnedTerms" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Owners" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrentOwnerIDs" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="UpdatedOwnerIDs" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContentFileDesc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContentFileFormat" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContentFilename" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContentFileSize" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContentFileExt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContentFileData" type="s:base64Binary" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateContentUpdated" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContentIconFile" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContentCustomX" type="tns:ArrayOfContentCustom" />
+          <s:element minOccurs="1" maxOccurs="1" name="TranslationStatus" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TranslationStatusName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TranslationParent" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="InlineEdit" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MissingRequiredCM" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CheckOutFileName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="errors" type="tns:ArrayOfInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasErrors" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ViewPerm" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="EditPerm" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ManagePerm" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="OwnerPerm" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Rank" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PropertiesUpdated" type="tns:ContentUpdatedProperties" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="eContentTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSet" />
+          <s:enumeration value="QA" />
+          <s:enumeration value="Item" />
+          <s:enumeration value="Slide" />
+          <s:enumeration value="File" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="eProjectRestrictions">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="PostBuildEditing" />
+          <s:enumeration value="AllEditing" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfContentCustom">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ContentCustom" nillable="true" type="tns:ContentCustom" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ContentCustom">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CMID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CMType" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DataType" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Editable" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Enabled" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AdminsOnly" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Required" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MultiValued" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DisplayOrder" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DefaultTextValue" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultIntegerValue" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultDateValue" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultNumericValue" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultBooleanValue" nillable="true" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxTextLength" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MinNumericValue" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxNumericValue" nillable="true" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="ValidationRegex" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TextAreaRows" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContentID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MultiDisplayOrder" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TextValue" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IntegerValue" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateValue" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumericValue" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="BooleanValue" nillable="true" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsDropDown" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SelectedValues" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ContentUpdatedProperties">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="RevisionUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="EnabledUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubmittedUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="LCIDUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProjectRestrictionsUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="PasswordUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateToExpireUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContactInfoUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AlertTextUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AlertEnabledUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TitleUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="KeywordsUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="LearnedTermsUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CommentsUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContentFileDataUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TranslationStatusUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="OwnersIDsUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="LibraryFolderIDUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContentTypeUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContentTextUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContentFileDescUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContentFileFormatUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContentFilenameUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="InLineEditUpdated" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BundleContent">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Content">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="BundleID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="RevisionUsed" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="DisplayOrder" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="NewDisplayOrder" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ContentLink">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Content">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ContentID1" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ContentID2" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="LinkType" type="tns:eContentLinkTypes" />
+              <s:element minOccurs="0" maxOccurs="1" name="LinkTypeName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Direction" type="tns:eContentLinkDirection" />
+              <s:element minOccurs="1" maxOccurs="1" name="OldDirection" type="tns:eContentLinkDirection" />
+              <s:element minOccurs="1" maxOccurs="1" name="Notify" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="LinkDateCreated" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="LinkCreatedByUserID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="LinkCreatedByUserName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsNew" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="eContentLinkTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSet" />
+          <s:enumeration value="Update" />
+          <s:enumeration value="SeeAlso" />
+          <s:enumeration value="Translation" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="eContentLinkDirection">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSet" />
+          <s:enumeration value="Right" />
+          <s:enumeration value="Left" />
+          <s:enumeration value="Both" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="libraryContentDetailsGet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="contentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="libraryContentDetailsGetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="libraryContentDetailsGetResult" type="tns:Content" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="libraryContentDetailsUpdate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="contentIDs" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="contentChanges" type="tns:ContentUpdates" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ContentUpdates">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="AlertEnabled" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AlertEnabledUpdated" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="AlertText" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AlertTextUpdated" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CommentsUpdated" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContactInfo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContactInfoUpdated" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContentFileDesc" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContentFileDescUpdated" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContentFileFormat" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContentFileFormatUpdated" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContentFilename" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContentFilenameUpdated" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContentText" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContentTextUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContentType" type="tns:eContentTypes" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContentTypeUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateToExpire" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateToExpireUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Enabled" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="EnabledUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="InLineEdit" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="InLineEditUpdated" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="KeywordIDs" type="tns:ArrayOfInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="KeywordIDsUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="LCID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LCIDUpdated" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="LearnedTerms" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="LearnedTermsUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="LibraryFolderID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LibraryFolderIDUpdated" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="OwnerIDs" type="tns:ArrayOfInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="OwnersIDsUpdated" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PasswordUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProjectRestrictions" type="tns:eProjectRestrictions" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProjectRestrictionsUpdated" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TitleUpdated" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="libraryContentDetailsUpdateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="libraryContentDetailsUpdateResult" type="tns:ArrayOfContent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="libraryContentNew">
+        <s:complexType />
+      </s:element>
+      <s:element name="libraryContentNewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="libraryContentNewResult" type="tns:Content" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="libraryContentAdd">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="contentData" type="tns:Content" />
+            <s:element minOccurs="0" maxOccurs="1" name="file" type="tns:fileData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="fileData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fileContent" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="libraryContentAddResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="libraryContentAddResult" type="tns:Content" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="libraryContentRevisionAdd">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="contentID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="file" type="tns:fileData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="libraryContentRevisionAddResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="libraryContentRevisionAddResult" type="tns:Content" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="libraryContentDelete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="contentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="libraryContentDeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="libraryContentDeleteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="libraryContentGet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="contentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="libraryContentGetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="libraryContentGetResult" type="tns:fileData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="libraryFolderGetTopSoapIn">
+    <wsdl:part name="parameters" element="tns:libraryFolderGetTop" />
+  </wsdl:message>
+  <wsdl:message name="libraryFolderGetTopSoapOut">
+    <wsdl:part name="parameters" element="tns:libraryFolderGetTopResponse" />
+  </wsdl:message>
+  <wsdl:message name="libraryFolderGetTopQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="libraryFoldersGetListSoapIn">
+    <wsdl:part name="parameters" element="tns:libraryFoldersGetList" />
+  </wsdl:message>
+  <wsdl:message name="libraryFoldersGetListSoapOut">
+    <wsdl:part name="parameters" element="tns:libraryFoldersGetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="libraryFoldersGetListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="libraryFolderContentGetListSoapIn">
+    <wsdl:part name="parameters" element="tns:libraryFolderContentGetList" />
+  </wsdl:message>
+  <wsdl:message name="libraryFolderContentGetListSoapOut">
+    <wsdl:part name="parameters" element="tns:libraryFolderContentGetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="libraryFolderContentGetListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="libraryContentDetailsGetSoapIn">
+    <wsdl:part name="parameters" element="tns:libraryContentDetailsGet" />
+  </wsdl:message>
+  <wsdl:message name="libraryContentDetailsGetSoapOut">
+    <wsdl:part name="parameters" element="tns:libraryContentDetailsGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="libraryContentDetailsGetQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="libraryContentDetailsUpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:libraryContentDetailsUpdate" />
+  </wsdl:message>
+  <wsdl:message name="libraryContentDetailsUpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:libraryContentDetailsUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="libraryContentDetailsUpdateQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="libraryContentNewSoapIn">
+    <wsdl:part name="parameters" element="tns:libraryContentNew" />
+  </wsdl:message>
+  <wsdl:message name="libraryContentNewSoapOut">
+    <wsdl:part name="parameters" element="tns:libraryContentNewResponse" />
+  </wsdl:message>
+  <wsdl:message name="libraryContentNewQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="libraryContentAddSoapIn">
+    <wsdl:part name="parameters" element="tns:libraryContentAdd" />
+  </wsdl:message>
+  <wsdl:message name="libraryContentAddSoapOut">
+    <wsdl:part name="parameters" element="tns:libraryContentAddResponse" />
+  </wsdl:message>
+  <wsdl:message name="libraryContentAddQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="libraryContentRevisionAddSoapIn">
+    <wsdl:part name="parameters" element="tns:libraryContentRevisionAdd" />
+  </wsdl:message>
+  <wsdl:message name="libraryContentRevisionAddSoapOut">
+    <wsdl:part name="parameters" element="tns:libraryContentRevisionAddResponse" />
+  </wsdl:message>
+  <wsdl:message name="libraryContentRevisionAddQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="libraryContentDeleteSoapIn">
+    <wsdl:part name="parameters" element="tns:libraryContentDelete" />
+  </wsdl:message>
+  <wsdl:message name="libraryContentDeleteSoapOut">
+    <wsdl:part name="parameters" element="tns:libraryContentDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="libraryContentDeleteQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="libraryContentGetSoapIn">
+    <wsdl:part name="parameters" element="tns:libraryContentGet" />
+  </wsdl:message>
+  <wsdl:message name="libraryContentGetSoapOut">
+    <wsdl:part name="parameters" element="tns:libraryContentGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="libraryContentGetQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:portType name="LibrarySoap">
+    <wsdl:operation name="libraryFolderGetTop">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get the top level Library node, with permissions, for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:libraryFolderGetTopSoapIn" />
+      <wsdl:output message="tns:libraryFolderGetTopSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="libraryFoldersGetList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a list of all Folders in a specific folder in the Library, with permissions, for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:libraryFoldersGetListSoapIn" />
+      <wsdl:output message="tns:libraryFoldersGetListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="libraryFolderContentGetList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a list of all contents in a specific folder in the Library, based on permissions, for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:libraryFolderContentGetListSoapIn" />
+      <wsdl:output message="tns:libraryFolderContentGetListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentDetailsGet">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get the properties for the specific ContentID from the Library.</wsdl:documentation>
+      <wsdl:input message="tns:libraryContentDetailsGetSoapIn" />
+      <wsdl:output message="tns:libraryContentDetailsGetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentDetailsUpdate">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">(Bulk) Update the properties for the specific ContentID(s) from the Library.</wsdl:documentation>
+      <wsdl:input message="tns:libraryContentDetailsUpdateSoapIn" />
+      <wsdl:output message="tns:libraryContentDetailsUpdateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentNew">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create and initialize a new Content class (Content).</wsdl:documentation>
+      <wsdl:input message="tns:libraryContentNewSoapIn" />
+      <wsdl:output message="tns:libraryContentNewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentAdd">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add a file to the Library.</wsdl:documentation>
+      <wsdl:input message="tns:libraryContentAddSoapIn" />
+      <wsdl:output message="tns:libraryContentAddSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentRevisionAdd">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add a new revision to content that already exists in the Library.</wsdl:documentation>
+      <wsdl:input message="tns:libraryContentRevisionAddSoapIn" />
+      <wsdl:output message="tns:libraryContentRevisionAddSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentDelete">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes the specified content from the Library.</wsdl:documentation>
+      <wsdl:input message="tns:libraryContentDeleteSoapIn" />
+      <wsdl:output message="tns:libraryContentDeleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentGet">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a file from the Library.</wsdl:documentation>
+      <wsdl:input message="tns:libraryContentGetSoapIn" />
+      <wsdl:output message="tns:libraryContentGetSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LibrarySoap" type="tns:LibrarySoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="libraryFolderGetTop">
+      <soap:operation soapAction="http://qvidian.com/webservices/libraryFolderGetTop" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:libraryFolderGetTopQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:libraryFolderGetTopQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="libraryFoldersGetList">
+      <soap:operation soapAction="http://qvidian.com/webservices/libraryFoldersGetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:libraryFoldersGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:libraryFoldersGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="libraryFolderContentGetList">
+      <soap:operation soapAction="http://qvidian.com/webservices/libraryFolderContentGetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:libraryFolderContentGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:libraryFolderContentGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentDetailsGet">
+      <soap:operation soapAction="http://qvidian.com/webservices/libraryContentDetailsGet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:libraryContentDetailsGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:libraryContentDetailsGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentDetailsUpdate">
+      <soap:operation soapAction="http://qvidian.com/webservices/libraryContentDetailsUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:libraryContentDetailsUpdateQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:libraryContentDetailsUpdateQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentNew">
+      <soap:operation soapAction="http://qvidian.com/webservices/libraryContentNew" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:libraryContentNewQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:libraryContentNewQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentAdd">
+      <soap:operation soapAction="http://qvidian.com/webservices/libraryContentAdd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:libraryContentAddQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:libraryContentAddQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentRevisionAdd">
+      <soap:operation soapAction="http://qvidian.com/webservices/libraryContentRevisionAdd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:libraryContentRevisionAddQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:libraryContentRevisionAddQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentDelete">
+      <soap:operation soapAction="http://qvidian.com/webservices/libraryContentDelete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:libraryContentDeleteQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:libraryContentDeleteQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentGet">
+      <soap:operation soapAction="http://qvidian.com/webservices/libraryContentGet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:libraryContentGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:libraryContentGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LibrarySoap12" type="tns:LibrarySoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="libraryFolderGetTop">
+      <soap12:operation soapAction="http://qvidian.com/webservices/libraryFolderGetTop" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:libraryFolderGetTopQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:libraryFolderGetTopQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="libraryFoldersGetList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/libraryFoldersGetList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:libraryFoldersGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:libraryFoldersGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="libraryFolderContentGetList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/libraryFolderContentGetList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:libraryFolderContentGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:libraryFolderContentGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentDetailsGet">
+      <soap12:operation soapAction="http://qvidian.com/webservices/libraryContentDetailsGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:libraryContentDetailsGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:libraryContentDetailsGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentDetailsUpdate">
+      <soap12:operation soapAction="http://qvidian.com/webservices/libraryContentDetailsUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:libraryContentDetailsUpdateQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:libraryContentDetailsUpdateQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentNew">
+      <soap12:operation soapAction="http://qvidian.com/webservices/libraryContentNew" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:libraryContentNewQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:libraryContentNewQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentAdd">
+      <soap12:operation soapAction="http://qvidian.com/webservices/libraryContentAdd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:libraryContentAddQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:libraryContentAddQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentRevisionAdd">
+      <soap12:operation soapAction="http://qvidian.com/webservices/libraryContentRevisionAdd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:libraryContentRevisionAddQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:libraryContentRevisionAddQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentDelete">
+      <soap12:operation soapAction="http://qvidian.com/webservices/libraryContentDelete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:libraryContentDeleteQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:libraryContentDeleteQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentGet">
+      <soap12:operation soapAction="http://qvidian.com/webservices/libraryContentGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:libraryContentGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:libraryContentGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Library">
+    <wsdl:port name="LibrarySoap" binding="tns:LibrarySoap">
+      <soap:address location="http://localhost/Qvidian.WS/Library.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LibrarySoap12" binding="tns:LibrarySoap12">
+      <soap12:address location="http://localhost/Qvidian.WS/Library.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

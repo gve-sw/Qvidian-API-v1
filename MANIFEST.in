@@ -1,0 +1,4 @@
+include README.md
+include LICENSE
+include qvidianapi/Common.wsdl
+include qvidianapi/QvidianAuthentication.wsdl

@@ -1,0 +1,998 @@
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://qvidian.com/webservices/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://qvidian.com/webservices/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://qvidian.com/webservices/">
+      <s:import namespace="http://microsoft.com/wsdl/types/"/>
+      <s:element name="librarySearchRequestsInit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="requestCount" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="librarySearchRequestsInitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="librarySearchRequestsInitResult" type="tns:ArrayOfSearchRequest"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSearchRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SearchRequest" nillable="true" type="tns:SearchRequest"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SearchRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SearchSettings" type="tns:SearchSettings"/>
+          <s:element minOccurs="1" maxOccurs="1" name="getContentFileData" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="getTotalResultsCount" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="maxSearchResults" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="resultPageSize" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="resultPageIndex" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="searchResultsSetID" type="tns:eSearchResultsSetIDs"/>
+          <s:element minOccurs="1" maxOccurs="1" name="resetSearchCache" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="columnFilters" type="tns:ArrayOfQueryFilter"/>
+          <s:element minOccurs="0" maxOccurs="1" name="quickSearchFilters" type="tns:ArrayOfWhereFilter"/>
+          <s:element minOccurs="1" maxOccurs="1" name="saveAdvancedSearch" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="searchTabID" type="s1:guid"/>
+          <s:element minOccurs="1" maxOccurs="1" name="getSearchHistory" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="searchMode" type="tns:eSearchModes"/>
+          <s:element minOccurs="1" maxOccurs="1" name="stdSearchID" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="namedSearch" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SearchSettings">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SearchID" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="SearchType" type="tns:eSearchTypes"/>
+          <s:element minOccurs="0" maxOccurs="1" name="SearchName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="UserID" nillable="true" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="SelectedLibraryFolderIDs" type="tns:ArrayOfString"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ExpandedLibraryFolderIDs" type="tns:ArrayOfString"/>
+          <s:element minOccurs="0" maxOccurs="1" name="SearchTermsString" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="AllTheseWords" type="tns:ArrayOfString"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ExactWordingOrPhrase" type="tns:ArrayOfString"/>
+          <s:element minOccurs="0" maxOccurs="1" name="OneOrMoreOfTheseWords" type="tns:ArrayOfString"/>
+          <s:element minOccurs="0" maxOccurs="1" name="AnyOfTheseUnwantedWords" type="tns:ArrayOfString"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Include" type="tns:ArrayOfESearchIncludes"/>
+          <s:element minOccurs="1" maxOccurs="1" name="FilterByLanguageLCID" nillable="true" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="FoundIn" type="tns:ArrayOfESearchFoundIns"/>
+          <s:element minOccurs="1" maxOccurs="1" name="Filtering" type="tns:eSearchFiltering"/>
+          <s:element minOccurs="0" maxOccurs="1" name="FilterByContentTypes" type="tns:ArrayOfEContentTypes"/>
+          <s:element minOccurs="0" maxOccurs="1" name="FilterByContentFileFormats" type="tns:ArrayOfESearchFileFormats"/>
+          <s:element minOccurs="0" maxOccurs="1" name="FilterByProjectRestrictions" type="tns:ArrayOfEProjectRestrictions"/>
+          <s:element minOccurs="0" maxOccurs="1" name="FilterByContentIDs" type="tns:FilterByContentIDsCriteriaSet"/>
+          <s:element minOccurs="0" maxOccurs="1" name="FilterByTranslationParentIDs" type="tns:FilterByTranslationParentIDsCriteriaSet"/>
+          <s:element minOccurs="0" maxOccurs="1" name="FilterByTranslationStatus" type="tns:FilterByTranslationStatusCriteriaSet"/>
+          <s:element minOccurs="0" maxOccurs="1" name="FilterByLinkedToIDs" type="tns:FilterByLinkedToIDsCriteriaSet"/>
+          <s:element minOccurs="0" maxOccurs="1" name="FilterByLinkedFromIDs" type="tns:FilterByLinkedFromIDsCriteriaSet"/>
+          <s:element minOccurs="0" maxOccurs="1" name="FilterByTimesUsed" type="tns:FilterByTimesUsedCriteriaSet"/>
+          <s:element minOccurs="0" maxOccurs="1" name="FilterByUsers" type="tns:ArrayOfFilterByUsersCriteriaSet"/>
+          <s:element minOccurs="0" maxOccurs="1" name="FilterByDates" type="tns:ArrayOfFilterByDatesCriteriaSet"/>
+          <s:element minOccurs="0" maxOccurs="1" name="FilterByStatus" type="tns:ArrayOfFilterByStatusCriteriaSet"/>
+          <s:element minOccurs="1" maxOccurs="1" name="FilterByCustomMap" type="tns:eCustomFilterMaps"/>
+          <s:element minOccurs="0" maxOccurs="1" name="FilterByCustomMetadata" type="tns:ArrayOfFilterByCMCriteriaSet"/>
+          <s:element minOccurs="1" maxOccurs="1" name="FilterByBundleID" nillable="true" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="SortOrder" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="DisplayOrder" nillable="true" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ContentColumns" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="UseInflectional" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="SearchActions" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="SearchActionsString" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="FixedPublic" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ExcludedFolderIDs" type="tns:ArrayOfString"/>
+          <s:element minOccurs="0" maxOccurs="1" name="SearchSubfolderIDs" type="tns:ArrayOfString"/>
+          <s:element minOccurs="1" maxOccurs="1" name="ShareType" type="tns:eSavedSearchShareTypes"/>
+          <s:element minOccurs="1" maxOccurs="1" name="Icon" type="tns:eSavedSearchIconTypes"/>
+          <s:element minOccurs="1" maxOccurs="1" name="IsFavorite" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="IsOwner" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="IsSharedToMe" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="IsSharedToOthers" type="s:boolean"/>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="eSearchTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSet"/>
+          <s:enumeration value="BasicSearch"/>
+          <s:enumeration value="AdvancedSearch"/>
+          <s:enumeration value="NamedAdvancedSearch"/>
+          <s:enumeration value="UserSearchHistory"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfESearchIncludes">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="eSearchIncludes" type="tns:eSearchIncludes"/>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="eSearchIncludes">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSet"/>
+          <s:enumeration value="Content"/>
+          <s:enumeration value="Bundles"/>
+          <s:enumeration value="OpenBundleTab"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfESearchFoundIns">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="eSearchFoundIns" type="tns:eSearchFoundIns"/>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="eSearchFoundIns">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSet"/>
+          <s:enumeration value="Title"/>
+          <s:enumeration value="Content"/>
+          <s:enumeration value="Comments"/>
+          <s:enumeration value="Description"/>
+          <s:enumeration value="Keywords"/>
+          <s:enumeration value="SearchTerms"/>
+          <s:enumeration value="AlertText"/>
+          <s:enumeration value="ContactInfo"/>
+          <s:enumeration value="CustomMetadata"/>
+          <s:enumeration value="ContentID"/>
+          <s:enumeration value="Owners"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="eSearchFiltering">
+        <s:restriction base="s:string">
+          <s:enumeration value="None"/>
+          <s:enumeration value="Advanced"/>
+          <s:enumeration value="ByContentID"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfEContentTypes">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="eContentTypes" type="tns:eContentTypes"/>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="eContentTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSet"/>
+          <s:enumeration value="QA"/>
+          <s:enumeration value="Item"/>
+          <s:enumeration value="Slide"/>
+          <s:enumeration value="File"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfESearchFileFormats">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="eSearchFileFormats" type="tns:eSearchFileFormats"/>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="eSearchFileFormats">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSet"/>
+          <s:enumeration value="Word"/>
+          <s:enumeration value="PowerPoint"/>
+          <s:enumeration value="Excel"/>
+          <s:enumeration value="Other"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfEProjectRestrictions">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="eProjectRestrictions" type="tns:eProjectRestrictions"/>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="eProjectRestrictions">
+        <s:restriction base="s:string">
+          <s:enumeration value="None"/>
+          <s:enumeration value="PostBuildEditing"/>
+          <s:enumeration value="AllEditing"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="FilterByContentIDsCriteriaSet">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IDOperator" type="tns:eSearchContentIDOperators"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ContentIDs" type="tns:ArrayOfInt"/>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="eSearchContentIDOperators">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSet"/>
+          <s:enumeration value="EqualTo"/>
+          <s:enumeration value="LessThan"/>
+          <s:enumeration value="GreaterThan"/>
+          <s:enumeration value="Between"/>
+          <s:enumeration value="InList"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FilterByTranslationParentIDsCriteriaSet">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IDOperator" type="tns:eSearchTranslationParentIDOperators"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ParentIDs" type="tns:ArrayOfInt"/>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="eSearchTranslationParentIDOperators">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSet"/>
+          <s:enumeration value="EqualTo"/>
+          <s:enumeration value="LessThan"/>
+          <s:enumeration value="GreaterThan"/>
+          <s:enumeration value="Between"/>
+          <s:enumeration value="InList"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="FilterByTranslationStatusCriteriaSet">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="StatusOperator" type="tns:eSearchTranslationStatusOperators"/>
+          <s:element minOccurs="0" maxOccurs="1" name="StatusValues" type="tns:ArrayOfInt"/>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="eSearchTranslationStatusOperators">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSet"/>
+          <s:enumeration value="EqualTo"/>
+          <s:enumeration value="InList"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="FilterByLinkedToIDsCriteriaSet">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IDOperator" type="tns:eSearchLinkedIDOperators"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ContentIDs" type="tns:ArrayOfInt"/>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="eSearchLinkedIDOperators">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSet"/>
+          <s:enumeration value="EqualTo"/>
+          <s:enumeration value="InList"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="FilterByLinkedFromIDsCriteriaSet">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IDOperator" type="tns:eSearchLinkedIDOperators"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ContentIDs" type="tns:ArrayOfInt"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FilterByTimesUsedCriteriaSet">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UsedOperator" type="tns:eSearchTimesUsedOperators"/>
+          <s:element minOccurs="1" maxOccurs="1" name="TimesUsed" type="s:int"/>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="eSearchTimesUsedOperators">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSet"/>
+          <s:enumeration value="EqualTo"/>
+          <s:enumeration value="LessThan"/>
+          <s:enumeration value="GreaterThan"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfFilterByUsersCriteriaSet">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FilterByUsersCriteriaSet" nillable="true" type="tns:FilterByUsersCriteriaSet"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FilterByUsersCriteriaSet">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UserCriterionName" type="tns:eSearchUserCriteria"/>
+          <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="FullUserName" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="eSearchUserCriteria">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSet"/>
+          <s:enumeration value="CreatedBy"/>
+          <s:enumeration value="OwnedBy"/>
+          <s:enumeration value="LastModifiedBy"/>
+          <s:enumeration value="LastUsedBy"/>
+          <s:enumeration value="CheckedOutBy"/>
+          <s:enumeration value="CheckedInBy"/>
+          <s:enumeration value="ManagedBy"/>
+          <s:enumeration value="EditableBy"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfFilterByDatesCriteriaSet">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FilterByDatesCriteriaSet" nillable="true" type="tns:FilterByDatesCriteriaSet"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FilterByDatesCriteriaSet">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DateCriterionName" type="tns:eSearchDateCriteria"/>
+          <s:element minOccurs="1" maxOccurs="1" name="DateOperator" type="tns:eSearchDateOperators"/>
+          <s:element minOccurs="1" maxOccurs="1" name="Date1" nillable="true" type="s:dateTime"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Date1String" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="Date2" nillable="true" type="s:dateTime"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Date2String" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="eSearchDateCriteria">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSet"/>
+          <s:enumeration value="Created"/>
+          <s:enumeration value="Expiration"/>
+          <s:enumeration value="LastModified"/>
+          <s:enumeration value="LastUsed"/>
+          <s:enumeration value="CheckedOut"/>
+          <s:enumeration value="CheckedIn"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="eSearchDateOperators">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSet"/>
+          <s:enumeration value="OnDate"/>
+          <s:enumeration value="Before"/>
+          <s:enumeration value="After"/>
+          <s:enumeration value="Between"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfFilterByStatusCriteriaSet">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FilterByStatusCriteriaSet" nillable="true" type="tns:FilterByStatusCriteriaSet"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FilterByStatusCriteriaSet">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="StatusCriterionName" type="tns:eSearchStatusCriteria"/>
+          <s:element minOccurs="1" maxOccurs="1" name="StatusState" type="s:boolean"/>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="eSearchStatusCriteria">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSet"/>
+          <s:enumeration value="Enabled"/>
+          <s:enumeration value="Expired"/>
+          <s:enumeration value="BulkLoaded"/>
+          <s:enumeration value="Bundled"/>
+          <s:enumeration value="Submitted"/>
+          <s:enumeration value="Unassigned"/>
+          <s:enumeration value="CheckedOut"/>
+          <s:enumeration value="AlertActive"/>
+          <s:enumeration value="AlertEnabled"/>
+          <s:enumeration value="Linked"/>
+          <s:enumeration value="NewContent"/>
+          <s:enumeration value="HasFeedback"/>
+          <s:enumeration value="MyFavorites"/>
+          <s:enumeration value="InlineEdit"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="eCustomFilterMaps">
+        <s:restriction base="s:string">
+          <s:enumeration value="None"/>
+          <s:enumeration value="ContentTray"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfFilterByCMCriteriaSet">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FilterByCMCriteriaSet" nillable="true" type="tns:FilterByCMCriteriaSet"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FilterByCMCriteriaSet">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CMID" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="CMDataType" type="tns:CMDataTypes"/>
+          <s:element minOccurs="1" maxOccurs="1" name="CMOperator" type="tns:eSearchCMOperators"/>
+          <s:element minOccurs="1" maxOccurs="1" name="CMDate1" nillable="true" type="s:dateTime"/>
+          <s:element minOccurs="0" maxOccurs="1" name="CMDate1String" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="CMDate2" nillable="true" type="s:dateTime"/>
+          <s:element minOccurs="0" maxOccurs="1" name="CMDate2String" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="CMValues" type="tns:ArrayOfString"/>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="CMDataTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotUsed"/>
+          <s:enumeration value="TextType"/>
+          <s:enumeration value="DateType"/>
+          <s:enumeration value="IntegerType"/>
+          <s:enumeration value="FloatType"/>
+          <s:enumeration value="BooleanType"/>
+          <s:enumeration value="TextAreaType"/>
+          <s:enumeration value="DropDownType"/>
+          <s:enumeration value="MultiValueType"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="eSearchCMOperators">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSet"/>
+          <s:enumeration value="Matches"/>
+          <s:enumeration value="BeginsWith"/>
+          <s:enumeration value="EndsWith"/>
+          <s:enumeration value="Contains"/>
+          <s:enumeration value="EqualTo"/>
+          <s:enumeration value="LessThan"/>
+          <s:enumeration value="GreaterThan"/>
+          <s:enumeration value="Between"/>
+          <s:enumeration value="InList"/>
+          <s:enumeration value="OnDate"/>
+          <s:enumeration value="Before"/>
+          <s:enumeration value="After"/>
+          <s:enumeration value="BetweenDates"/>
+          <s:enumeration value="IsNull"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="eSavedSearchShareTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="PrivateSearch"/>
+          <s:enumeration value="PublicSearch"/>
+          <s:enumeration value="SharedSearch"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="eSavedSearchIconTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="Search"/>
+          <s:enumeration value="User"/>
+          <s:enumeration value="Folder"/>
+          <s:enumeration value="Document"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="eSearchResultsSetIDs">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSet"/>
+          <s:enumeration value="LibrarySearchNotSet"/>
+          <s:enumeration value="LibrarySearchTab1"/>
+          <s:enumeration value="LibrarySearchTab2"/>
+          <s:enumeration value="LibrarySearchTab3"/>
+          <s:enumeration value="LibrarySearchTab4"/>
+          <s:enumeration value="LibrarySearchTab5"/>
+          <s:enumeration value="RFPWorkspaceLibrarySearchNotSet"/>
+          <s:enumeration value="RFPWorkspaceLibrarySearchTab1"/>
+          <s:enumeration value="RFPWorkspaceLibrarySearchTab2"/>
+          <s:enumeration value="RFPWorkspaceLibrarySearchTab3"/>
+          <s:enumeration value="RFPWorkspaceLibrarySearchTab4"/>
+          <s:enumeration value="RFPWorkspaceLibrarySearchTab5"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfQueryFilter">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="QueryFilter" nillable="true" type="tns:QueryFilter"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="QueryFilter">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="field" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="op" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="qryString" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="dateColumn" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="dbType" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="columnSQL" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfWhereFilter">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="WhereFilter" nillable="true" type="tns:WhereFilter"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="WhereFilter">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="op" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="clause" type="tns:QueryFilter"/>
+          <s:element minOccurs="0" maxOccurs="1" name="subClause" type="tns:ArrayOfWhereFilter"/>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="eSearchModes">
+        <s:restriction base="s:string">
+          <s:enumeration value="ClearSearch"/>
+          <s:enumeration value="BasicSearch"/>
+          <s:enumeration value="AdvancedSearch"/>
+          <s:enumeration value="Browse"/>
+          <s:enumeration value="StandardSearch"/>
+          <s:enumeration value="NamedAdvancedSearch"/>
+          <s:enumeration value="ByContentIDsSearch"/>
+          <s:enumeration value="ShowContentPropertiesSearch"/>
+          <s:enumeration value="SearchHistorySearch"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="QvidianCredentialHeader" type="tns:QvidianCredentialHeader"/>
+      <s:complexType name="QvidianCredentialHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AuthenticationToken" type="s:string"/>
+        </s:sequence>
+        <s:anyAttribute/>
+      </s:complexType>
+      <s:element name="librarySearchesAsLists">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchRequestList" type="tns:ArrayOfSearchRequest"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="librarySearchesAsListsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="librarySearchesAsListsResult" type="tns:ArrayOfSearchResultsList"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSearchResultsList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SearchResultsList" nillable="true" type="tns:SearchResultsList"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SearchResultsList">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="totalResultsCount" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="returnedResultsCount" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="searchException" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="contentList" type="tns:ArrayOfContent"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfContent">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Content" nillable="true" type="tns:Content"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Content">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ContentID" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="Revision" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="LibraryFolderID" nillable="true" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="LibraryFolderTitle" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="LibraryFolderPath" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ContentText" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="Enabled" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="Submitted" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="NewContent" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="BulkLoaded" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="IsBundle" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="ContentType" type="tns:eContentTypes"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ContentTypeName" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="LCID" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="LCIDLanguage" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="ProjectRestrictions" type="tns:eProjectRestrictions"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectRestrictionsName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="AlertActive" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="AlertEnabled" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="AlertText" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ContactInfo" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="DateCreated" type="s:dateTime"/>
+          <s:element minOccurs="0" maxOccurs="1" name="DateCreatedString" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="DateToExpire" nillable="true" type="s:dateTime"/>
+          <s:element minOccurs="0" maxOccurs="1" name="DateToExpireString" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="Expired" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedByUserID" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="CreatedByUserName" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="DateLastModified" nillable="true" type="s:dateTime"/>
+          <s:element minOccurs="0" maxOccurs="1" name="DateLastModifiedString" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="LastModifiedByUserID" nillable="true" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="LastModifiedByUserName" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="CheckedOut" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="DateCheckedOut" nillable="true" type="s:dateTime"/>
+          <s:element minOccurs="0" maxOccurs="1" name="DateCheckedOutString" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="CheckedOutByUserID" nillable="true" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="CheckedOutByUserName" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="DateCheckedIn" nillable="true" type="s:dateTime"/>
+          <s:element minOccurs="0" maxOccurs="1" name="DateCheckedInString" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="CheckedInByUserID" nillable="true" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="CheckedInByUserName" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="DateLastUsed" nillable="true" type="s:dateTime"/>
+          <s:element minOccurs="0" maxOccurs="1" name="DateLastUsedString" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="LastUsedByUserID" nillable="true" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="LastUsedByUserName" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="TimesUsedCount" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="CurrentUsage" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="HasFeedback" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="IsBookmarked" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="IsBundled" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="HasComments" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="IsLinked" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="PreviewPageCount" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="FullPreviewPageCount" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="AssignedTerms" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="UpdatedKeywordIDs" type="tns:ArrayOfInt"/>
+          <s:element minOccurs="0" maxOccurs="1" name="LearnedTerms" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="UpdatedLearnedTerms" type="tns:ArrayOfString"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Owners" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="CurrentOwnerIDs" type="tns:ArrayOfInt"/>
+          <s:element minOccurs="0" maxOccurs="1" name="UpdatedOwnerIDs" type="tns:ArrayOfInt"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ContentFileDesc" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ContentFileFormat" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ContentFilename" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="ContentFileSize" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ContentFileExt" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ContentFileData" type="s:base64Binary"/>
+          <s:element minOccurs="1" maxOccurs="1" name="DateContentUpdated" type="s:dateTime"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ContentIconFile" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ContentCustomX" type="tns:ArrayOfContentCustom"/>
+          <s:element minOccurs="1" maxOccurs="1" name="TranslationStatus" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="TranslationStatusName" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="TranslationParent" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="InlineEdit" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="MissingRequiredCM" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="CheckOutFileName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="errors" type="tns:ArrayOfInt"/>
+          <s:element minOccurs="1" maxOccurs="1" name="HasErrors" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="ViewPerm" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="EditPerm" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="ManagePerm" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="OwnerPerm" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="Rank" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="PropertiesUpdated" type="tns:ContentUpdatedProperties"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfContentCustom">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ContentCustom" nillable="true" type="tns:ContentCustom"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ContentCustom">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CMID" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="CMType" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="DataType" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="Editable" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="Enabled" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="AdminsOnly" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="Required" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="MultiValued" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="DisplayOrder" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="DefaultTextValue" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultIntegerValue" nillable="true" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultDateValue" nillable="true" type="s:dateTime"/>
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultNumericValue" nillable="true" type="s:double"/>
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultBooleanValue" nillable="true" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="MaxTextLength" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="MinNumericValue" nillable="true" type="s:double"/>
+          <s:element minOccurs="1" maxOccurs="1" name="MaxNumericValue" nillable="true" type="s:double"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ValidationRegex" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="TextAreaRows" nillable="true" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="ContentID" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="MultiDisplayOrder" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="TextValue" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="IntegerValue" nillable="true" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="DateValue" nillable="true" type="s:dateTime"/>
+          <s:element minOccurs="1" maxOccurs="1" name="NumericValue" nillable="true" type="s:double"/>
+          <s:element minOccurs="1" maxOccurs="1" name="BooleanValue" nillable="true" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="IsDropDown" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayValue" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="SelectedValues" type="tns:ArrayOfString"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ContentUpdatedProperties">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="RevisionUpdated" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="EnabledUpdated" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="SubmittedUpdated" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="LCIDUpdated" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="ProjectRestrictionsUpdated" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="PasswordUpdated" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="DateToExpireUpdated" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="ContactInfoUpdated" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="AlertTextUpdated" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="AlertEnabledUpdated" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="TitleUpdated" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="KeywordsUpdated" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="LearnedTermsUpdated" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="CommentsUpdated" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="ContentFileDataUpdated" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="TranslationStatusUpdated" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="OwnersIDsUpdated" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="LibraryFolderIDUpdated" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="ContentTypeUpdated" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="ContentTextUpdated" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="ContentFileDescUpdated" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="ContentFileFormatUpdated" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="ContentFilenameUpdated" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="InLineEditUpdated" type="s:boolean"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BundleContent">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Content">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="BundleID" type="s:int"/>
+              <s:element minOccurs="1" maxOccurs="1" name="RevisionUsed" type="s:int"/>
+              <s:element minOccurs="1" maxOccurs="1" name="DisplayOrder" type="s:int"/>
+              <s:element minOccurs="1" maxOccurs="1" name="NewDisplayOrder" type="s:int"/>
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="libraryContentPreviewGet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="contentID" type="s:int"/>
+            <s:element minOccurs="1" maxOccurs="1" name="revision" type="s:int"/>
+            <s:element minOccurs="1" maxOccurs="1" name="pageIndex" type="s:int"/>
+            <s:element minOccurs="1" maxOccurs="1" name="previewType" type="tns:ePreviewTypes"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="ePreviewTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSet"/>
+          <s:enumeration value="FullSize"/>
+          <s:enumeration value="PalmView"/>
+          <s:enumeration value="Thumbnail"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="libraryContentPreviewGetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="libraryContentPreviewGetResult" type="tns:fileDataEx"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="fileDataEx">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="fileContent" type="s:base64Binary"/>
+          <s:element minOccurs="1" maxOccurs="1" name="hasErrors" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="errorCodes" type="tns:ArrayOfInt"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="libraryContentPreviewHTMLGet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="contentID" type="s:int"/>
+            <s:element minOccurs="1" maxOccurs="1" name="revision" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="libraryContentPreviewHTMLGetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="libraryContentPreviewHTMLGetResult" type="tns:htmlDataEx"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="htmlDataEx">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="htmlContent" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="hasErrors" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="errorCodes" type="tns:ArrayOfInt"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="libraryContentThumbnailsGetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="contentIDs" type="tns:ArrayOfInt"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="libraryContentThumbnailsGetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="libraryContentThumbnailsGetListResult" type="tns:ArrayOfThumbnailData"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfThumbnailData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="thumbnailData" nillable="true" type="tns:thumbnailData"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="thumbnailData">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="contentID" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="contentExt" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="thumbnailContent" type="s:base64Binary"/>
+          <s:element minOccurs="1" maxOccurs="1" name="status" type="tns:eThumbnailDataStatusCodes"/>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="eThumbnailDataStatusCodes">
+        <s:restriction base="s:string">
+          <s:enumeration value="NoError"/>
+          <s:enumeration value="InvalidOrNoPermissions"/>
+          <s:enumeration value="UnsupportedFileType"/>
+          <s:enumeration value="NoPreviewCacheFound"/>
+          <s:enumeration value="PreviewGenerationError"/>
+          <s:enumeration value="UnexpectedError"/>
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"/>
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="librarySearchRequestsInitSoapIn">
+    <wsdl:part name="parameters" element="tns:librarySearchRequestsInit"/>
+  </wsdl:message>
+  <wsdl:message name="librarySearchRequestsInitSoapOut">
+    <wsdl:part name="parameters" element="tns:librarySearchRequestsInitResponse"/>
+  </wsdl:message>
+  <wsdl:message name="librarySearchRequestsInitQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader"/>
+  </wsdl:message>
+  <wsdl:message name="librarySearchesAsListsSoapIn">
+    <wsdl:part name="parameters" element="tns:librarySearchesAsLists"/>
+  </wsdl:message>
+  <wsdl:message name="librarySearchesAsListsSoapOut">
+    <wsdl:part name="parameters" element="tns:librarySearchesAsListsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="librarySearchesAsListsQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader"/>
+  </wsdl:message>
+  <wsdl:message name="libraryContentPreviewGetSoapIn">
+    <wsdl:part name="parameters" element="tns:libraryContentPreviewGet"/>
+  </wsdl:message>
+  <wsdl:message name="libraryContentPreviewGetSoapOut">
+    <wsdl:part name="parameters" element="tns:libraryContentPreviewGetResponse"/>
+  </wsdl:message>
+  <wsdl:message name="libraryContentPreviewGetQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader"/>
+  </wsdl:message>
+  <wsdl:message name="libraryContentPreviewHTMLGetSoapIn">
+    <wsdl:part name="parameters" element="tns:libraryContentPreviewHTMLGet"/>
+  </wsdl:message>
+  <wsdl:message name="libraryContentPreviewHTMLGetSoapOut">
+    <wsdl:part name="parameters" element="tns:libraryContentPreviewHTMLGetResponse"/>
+  </wsdl:message>
+  <wsdl:message name="libraryContentPreviewHTMLGetQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader"/>
+  </wsdl:message>
+  <wsdl:message name="libraryContentThumbnailsGetListSoapIn">
+    <wsdl:part name="parameters" element="tns:libraryContentThumbnailsGetList"/>
+  </wsdl:message>
+  <wsdl:message name="libraryContentThumbnailsGetListSoapOut">
+    <wsdl:part name="parameters" element="tns:libraryContentThumbnailsGetListResponse"/>
+  </wsdl:message>
+  <wsdl:message name="libraryContentThumbnailsGetListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader"/>
+  </wsdl:message>
+  <wsdl:portType name="ContentLibrarySoap">
+    <wsdl:operation name="librarySearchRequestsInit">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve an initialized library search settings object.</wsdl:documentation>
+      <wsdl:input message="tns:librarySearchRequestsInitSoapIn"/>
+      <wsdl:output message="tns:librarySearchRequestsInitSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="librarySearchesAsLists">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get library search results (as lists) for the current user based on the criteria specified in each of the specified search request objects.</wsdl:documentation>
+      <wsdl:input message="tns:librarySearchesAsListsSoapIn"/>
+      <wsdl:output message="tns:librarySearchesAsListsSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentPreviewGet">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a preview image file from the Content Library.</wsdl:documentation>
+      <wsdl:input message="tns:libraryContentPreviewGetSoapIn"/>
+      <wsdl:output message="tns:libraryContentPreviewGetSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentPreviewHTMLGet">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get an HTML preview file from the Content Library.</wsdl:documentation>
+      <wsdl:input message="tns:libraryContentPreviewHTMLGetSoapIn"/>
+      <wsdl:output message="tns:libraryContentPreviewHTMLGetSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentThumbnailsGetList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get thumbnail image files from the Content Library for each content ID specified.</wsdl:documentation>
+      <wsdl:input message="tns:libraryContentThumbnailsGetListSoapIn"/>
+      <wsdl:output message="tns:libraryContentThumbnailsGetListSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ContentLibrarySoap" type="tns:ContentLibrarySoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="librarySearchRequestsInit">
+      <soap:operation soapAction="http://qvidian.com/webservices/librarySearchRequestsInit" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:librarySearchRequestsInitQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+        <soap:header message="tns:librarySearchRequestsInitQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="librarySearchesAsLists">
+      <soap:operation soapAction="http://qvidian.com/webservices/librarySearchesAsLists" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:librarySearchesAsListsQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+        <soap:header message="tns:librarySearchesAsListsQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentPreviewGet">
+      <soap:operation soapAction="http://qvidian.com/webservices/libraryContentPreviewGet" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:libraryContentPreviewGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+        <soap:header message="tns:libraryContentPreviewGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentPreviewHTMLGet">
+      <soap:operation soapAction="http://qvidian.com/webservices/libraryContentPreviewHTMLGet" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:libraryContentPreviewHTMLGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+        <soap:header message="tns:libraryContentPreviewHTMLGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentThumbnailsGetList">
+      <soap:operation soapAction="http://qvidian.com/webservices/libraryContentThumbnailsGetList" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:libraryContentThumbnailsGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+        <soap:header message="tns:libraryContentThumbnailsGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ContentLibrarySoap12" type="tns:ContentLibrarySoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="librarySearchRequestsInit">
+      <soap12:operation soapAction="http://qvidian.com/webservices/librarySearchRequestsInit" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:librarySearchRequestsInitQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:librarySearchRequestsInitQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="librarySearchesAsLists">
+      <soap12:operation soapAction="http://qvidian.com/webservices/librarySearchesAsLists" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:librarySearchesAsListsQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:librarySearchesAsListsQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentPreviewGet">
+      <soap12:operation soapAction="http://qvidian.com/webservices/libraryContentPreviewGet" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:libraryContentPreviewGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:libraryContentPreviewGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentPreviewHTMLGet">
+      <soap12:operation soapAction="http://qvidian.com/webservices/libraryContentPreviewHTMLGet" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:libraryContentPreviewHTMLGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:libraryContentPreviewHTMLGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="libraryContentThumbnailsGetList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/libraryContentThumbnailsGetList" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:libraryContentThumbnailsGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:libraryContentThumbnailsGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ContentLibrary">
+    <wsdl:port name="ContentLibrarySoap" binding="tns:ContentLibrarySoap">
+      <soap:address location="https://qpa.qvidian.com/qpa_ws_10_8_2000_0013/ContentLibrary.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="ContentLibrarySoap12" binding="tns:ContentLibrarySoap12">
+      <soap12:address location="http://localhost/Qvidian.WS/ContentLibrary.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

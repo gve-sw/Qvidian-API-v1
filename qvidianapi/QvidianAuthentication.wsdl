@@ -1,0 +1,188 @@
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://qvidian.com/webservices/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://qvidian.com/webservices/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://qvidian.com/webservices/">
+      <s:element name="Connect">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConnectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConnectResult" type="tns:ConnectionBinding"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ConnectionBinding">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AuthToken" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="AuthUserName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="CommonURL" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="LibraryURL" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ContentLibraryURL" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectsURL" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="QvidianCredentialHeader" type="tns:QvidianCredentialHeader"/>
+      <s:complexType name="QvidianCredentialHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AuthenticationToken" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="InternalToken" type="s:string"/>
+        </s:sequence>
+        <s:anyAttribute/>
+      </s:complexType>
+      <s:element name="ConnectByAuthToken">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="authToken" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConnectByAuthTokenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConnectByAuthTokenResult" type="tns:ConnectionBinding"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConnectionTerminate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authenticationToken" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConnectionTerminateResponse">
+        <s:complexType/>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ConnectSoapIn">
+    <wsdl:part name="parameters" element="tns:Connect"/>
+  </wsdl:message>
+  <wsdl:message name="ConnectSoapOut">
+    <wsdl:part name="parameters" element="tns:ConnectResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ConnectQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader"/>
+  </wsdl:message>
+  <wsdl:message name="ConnectByAuthTokenSoapIn">
+    <wsdl:part name="parameters" element="tns:ConnectByAuthToken"/>
+  </wsdl:message>
+  <wsdl:message name="ConnectByAuthTokenSoapOut">
+    <wsdl:part name="parameters" element="tns:ConnectByAuthTokenResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ConnectByAuthTokenQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader"/>
+  </wsdl:message>
+  <wsdl:message name="ConnectionTerminateSoapIn">
+    <wsdl:part name="parameters" element="tns:ConnectionTerminate"/>
+  </wsdl:message>
+  <wsdl:message name="ConnectionTerminateSoapOut">
+    <wsdl:part name="parameters" element="tns:ConnectionTerminateResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ConnectionTerminateQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader"/>
+  </wsdl:message>
+  <wsdl:portType name="QvidianAuthenticationSoap">
+    <wsdl:operation name="Connect">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Connect to Qvidian using a valid user name and password.</wsdl:documentation>
+      <wsdl:input message="tns:ConnectSoapIn"/>
+      <wsdl:output message="tns:ConnectSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="ConnectByAuthToken">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Connect to Qvidian using a valid authentication token.</wsdl:documentation>
+      <wsdl:input message="tns:ConnectByAuthTokenSoapIn"/>
+      <wsdl:output message="tns:ConnectByAuthTokenSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="ConnectionTerminate">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Disconnect from Qvidian.</wsdl:documentation>
+      <wsdl:input message="tns:ConnectionTerminateSoapIn"/>
+      <wsdl:output message="tns:ConnectionTerminateSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="QvidianAuthenticationSoap" type="tns:QvidianAuthenticationSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Connect">
+      <soap:operation soapAction="http://qvidian.com/webservices/Connect" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:ConnectQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+        <soap:header message="tns:ConnectQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConnectByAuthToken">
+      <soap:operation soapAction="http://qvidian.com/webservices/ConnectByAuthToken" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:ConnectByAuthTokenQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+        <soap:header message="tns:ConnectByAuthTokenQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConnectionTerminate">
+      <soap:operation soapAction="http://qvidian.com/webservices/ConnectionTerminate" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:ConnectionTerminateQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+        <soap:header message="tns:ConnectionTerminateQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="QvidianAuthenticationSoap12" type="tns:QvidianAuthenticationSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Connect">
+      <soap12:operation soapAction="http://qvidian.com/webservices/Connect" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:ConnectQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:ConnectQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConnectByAuthToken">
+      <soap12:operation soapAction="http://qvidian.com/webservices/ConnectByAuthToken" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:ConnectByAuthTokenQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:ConnectByAuthTokenQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConnectionTerminate">
+      <soap12:operation soapAction="http://qvidian.com/webservices/ConnectionTerminate" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:ConnectionTerminateQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:ConnectionTerminateQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="QvidianAuthentication">
+    <wsdl:port name="QvidianAuthenticationSoap" binding="tns:QvidianAuthenticationSoap">
+      <soap:address location="https://qpalogin.qvidian.com/QvidianAuthentication.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="QvidianAuthenticationSoap12" binding="tns:QvidianAuthenticationSoap12">
+      <soap12:address location="http://localhost/Login/QvidianAuthentication.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

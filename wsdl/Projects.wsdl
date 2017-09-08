@@ -1,0 +1,3458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://qvidian.com/webservices/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://qvidian.com/webservices/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://qvidian.com/webservices/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="projectList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectListType" type="tns:ProjectListMode" />
+            <s:element minOccurs="1" maxOccurs="1" name="pageSize" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="currentPage" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="totalCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="ProjectListMode">
+        <s:restriction base="s:string">
+          <s:enumeration value="MyProjects" />
+          <s:enumeration value="AllProjects" />
+          <s:enumeration value="RecentProjects" />
+          <s:enumeration value="AssignedProjects" />
+          <s:enumeration value="AssignedByMe" />
+          <s:enumeration value="SalesForceProjects" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="projectListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectListResult" type="tns:ArrayOfProjectInfo" />
+            <s:element minOccurs="1" maxOccurs="1" name="totalCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfProjectInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProjectInfo" nillable="true" type="tns:ProjectInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProjectInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Archived" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ArchitectOnly" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AsOwner" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AsAssigned" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssignedTo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BuildInProgress" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanArchitect" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CloseDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectComment" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateCreated" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateLastUsed" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocTypeID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocTypeName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DynamicSelectionItems" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="errors" type="tns:ArrayOfInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasAgendaSlide" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasErrors" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsPB" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="BuildMode" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsOwner" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="LongDateFormat" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OutputCulture" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OwnerList" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CloseProbability" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProjectID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProjectValue" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectValueString" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProposalDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProposalDateString" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SectionMode" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="SentenceAnd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SentenceComma" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SFCreated" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ShortDateFormat" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusString" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TeamID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TeamName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TemplateID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasMergeCodeInventory" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="BuildToPDF" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsNewType" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="QvidianCredentialHeader" type="tns:QvidianCredentialHeader" />
+      <s:complexType name="QvidianCredentialHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AuthenticationToken" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="projectArchiveList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectListType" type="tns:ProjectArchiveListMode" />
+            <s:element minOccurs="1" maxOccurs="1" name="pageSize" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="currentPage" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="totalCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="ProjectArchiveListMode">
+        <s:restriction base="s:string">
+          <s:enumeration value="MyProjects" />
+          <s:enumeration value="AllProjects" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="projectArchiveListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectArchiveListResult" type="tns:ArrayOfProjectInfo" />
+            <s:element minOccurs="1" maxOccurs="1" name="totalCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectCheckExists">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectCheckExistsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectCheckExistsResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectCheckExistsByTitle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectTitle" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectCheckExistsByTitleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectCheckExistsByTitleResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectNew">
+        <s:complexType />
+      </s:element>
+      <s:element name="projectNewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectNewResult" type="tns:ProjectInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectAdd">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectData" type="tns:ProjectInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectAddResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectAddResult" type="tns:ProjectInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectRemove">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectRemoveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectRemoveResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectDetailsGet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectDetailsGetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectDetailsGetResult" type="tns:ProjectInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectDetailsUpdate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectData" type="tns:ProjectInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectDetailsUpdateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectDetailsUpdateResult" type="tns:ProjectInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectOwnersSetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userIDs" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectOwnersSetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectOwnersSetListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectOwnersGetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectOwnersGetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectOwnersGetListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectOptionalScreensGetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectOptionalScreensGetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectOptionalScreensGetListResult" type="tns:ArrayOfOptionalSubSections" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfOptionalSubSections">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OptionalSubSections" nillable="true" type="tns:OptionalSubSections" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OptionalSubSections">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Included" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsSection" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubSectionID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ComponentID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="projectOptionalScreensSetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="screens" type="tns:ArrayOfOptionalSubSections" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectOptionalScreensSetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectOptionalScreensSetListResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectNavigationGetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectNavigationGetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectNavigationGetListResult" type="tns:ArrayOfProjectNavigateNode" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfProjectNavigateNode">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProjectNavigateNode" nillable="true" type="tns:ProjectNavigateNode" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProjectNavigateNode">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AssignedUsers" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ByInclusion" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Complete" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CompID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CompTypeID" type="tns:CompTypes" />
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsOwner" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Required" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="RFPFileID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Selectable" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubSectionID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubSectionName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="CompTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSet" />
+          <s:enumeration value="Document" />
+          <s:enumeration value="Section" />
+          <s:enumeration value="SelectionContent" />
+          <s:enumeration value="RFPProject" />
+          <s:enumeration value="ComplianceMatrix" />
+          <s:enumeration value="AgendaSlide" />
+          <s:enumeration value="FileList" />
+          <s:enumeration value="StructuredContent" />
+          <s:enumeration value="DataEntryScreen" />
+          <s:enumeration value="StaticContent" />
+          <s:enumeration value="SectionBreak" />
+          <s:enumeration value="CustomSlide" />
+          <s:enumeration value="FieldCode" />
+          <s:enumeration value="DynamicSlide" />
+          <s:enumeration value="RFPFile" />
+          <s:enumeration value="GeneralProperties" />
+          <s:enumeration value="ProjectDocuments" />
+          <s:enumeration value="ProjectBuilds" />
+          <s:enumeration value="DynamicDataEntry" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="projectNavigationDataEntryGetNode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="subSectionID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="componentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectNavigationDataEntryGetNodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectNavigationDataEntryGetNodeResult" type="tns:ProjectNavigateDataEntryNode" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProjectNavigateDataEntryNode">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ColumnCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CompID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HelpTipText" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubSectionID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="projectNavigationFileListGetNode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="subSectionID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="componentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectNavigationFileListGetNodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectNavigationFileListGetNodeResult" type="tns:ProjectNavigateFileListNode" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProjectNavigateFileListNode">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="AllowNonLibraryContent" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CompID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HelpTipText" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubSectionID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Style" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="projectNavigationRFPGetNode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="subSectionID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="componentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectNavigationRFPGetNodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectNavigationRFPGetNodeResult" type="tns:ProjectNavigateRFPNode" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProjectNavigateRFPNode">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CompID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HelpTipText" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubSectionID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="projectNavigationSelectionGetNode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="subSectionID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="componentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectNavigationSelectionGetNodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectNavigationSelectionGetNodeResult" type="tns:ProjectNavigateSelectionNode" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProjectNavigateSelectionNode">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CompID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HelpTipText" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SelectionListID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SingleNodeExpand" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubSectionID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="projectNavigationStructuredContentGetNode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="subSectionID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="componentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectNavigationStructuredContentGetNodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectNavigationStructuredContentGetNodeResult" type="tns:ProjectNavigateStructuredContentNode" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProjectNavigateStructuredContentNode">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CompID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HelpTipText" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubSectionID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="projectSubSectionOwnersGetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="subSectionID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="componentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectSubSectionOwnersGetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectSubSectionOwnersGetListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectSubSectionOwnersSetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="subSectionID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="componentID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userIDs" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectSubSectionOwnersSetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectSubSectionOwnersSetListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectDataEntryScreenMergeCodeGetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="dataScreenID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="column" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeValues" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectDataEntryScreenMergeCodeGetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectDataEntryScreenMergeCodeGetListResult" type="tns:ArrayOfMergeCodeValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMergeCodeValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MergeCodeValue" nillable="true" type="tns:MergeCodeValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MergeCodeValue">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:MergeCode">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ContentID" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ContentRevision" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="DataSource" type="tns:ERCodeDataSources" />
+              <s:element minOccurs="1" maxOccurs="1" name="DisplayOrder" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="DropDownList" type="tns:ArrayOfEditReplaceItem" />
+              <s:element minOccurs="0" maxOccurs="1" name="errors" type="tns:ArrayOfInt" />
+              <s:element minOccurs="1" maxOccurs="1" name="HasDropDown" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="HasErrors" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="HasValue" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="MiscFileID" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Required" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="SalesForceObject" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SalesForceField" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="SalesForceMapID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="SalesForceHasValues" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsInvariantDate" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReplaceScope" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="SilentReplace" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="MergeCode">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="AutoEvaluate" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Context" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Editable" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MergeCodeID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ERCodeDataSources">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSet" />
+          <s:enumeration value="Preference" />
+          <s:enumeration value="AutoEvaluate" />
+          <s:enumeration value="TitlePrimaryTitle" />
+          <s:enumeration value="TitleSecondaryTitle" />
+          <s:enumeration value="CRMAddress1" />
+          <s:enumeration value="CRMAddress2" />
+          <s:enumeration value="CRMCity" />
+          <s:enumeration value="CRMContactID" />
+          <s:enumeration value="CRMCountry" />
+          <s:enumeration value="CRMEmail" />
+          <s:enumeration value="CRMFax" />
+          <s:enumeration value="CRMFirstName" />
+          <s:enumeration value="CRMLastName" />
+          <s:enumeration value="CRMLegalCompName" />
+          <s:enumeration value="CRMMiddleName" />
+          <s:enumeration value="CRMPhone" />
+          <s:enumeration value="CRMSalutation" />
+          <s:enumeration value="CRMShortCompName" />
+          <s:enumeration value="CRMState" />
+          <s:enumeration value="CRMTitle" />
+          <s:enumeration value="CRMZip" />
+          <s:enumeration value="UserAddress1" />
+          <s:enumeration value="UserAddress2" />
+          <s:enumeration value="UserCity" />
+          <s:enumeration value="UserCountry" />
+          <s:enumeration value="UserEmail" />
+          <s:enumeration value="UserFax" />
+          <s:enumeration value="UserFirstName" />
+          <s:enumeration value="UserLastName" />
+          <s:enumeration value="UserMiddleName" />
+          <s:enumeration value="UserPhone" />
+          <s:enumeration value="UserSalutation" />
+          <s:enumeration value="UserState" />
+          <s:enumeration value="UserTitle" />
+          <s:enumeration value="UserZip" />
+          <s:enumeration value="IntegrationSet" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfEditReplaceItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EditReplaceItem" nillable="true" type="tns:EditReplaceItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EditReplaceItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DisplayOrder" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ERID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ERText" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DataEntryField">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:MergeCodeValue">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="ControlID" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsCRMField" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="CRMFieldName" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="projectMergeCodeGetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeValues" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectMergeCodeGetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectMergeCodeGetListResult" type="tns:ArrayOfMergeCodeValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectPropertyGet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="propertyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectPropertyGetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectPropertyGetResult" type="tns:MergeCodeValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectPropertyGetByCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="propertyCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectPropertyGetByCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectPropertyGetByCodeResult" type="tns:MergeCodeValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectPropertyWrite">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="mcProperty" type="tns:MergeCodeValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectPropertyWriteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectPropertyWriteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectBuild">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="emailWhenDone" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="buildOptions" type="tns:BuildOptions" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BuildOptions">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="BuildSettings" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="BuildToPDF" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DontUseTemplate" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="FirstPageTray" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OtherPagesTray" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PageOrientation" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrintAllSelections" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReplaceMergeCodes" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReplaceFormattingCodes" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TemplateID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RemoveUnusedLayouts" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MergeCodeOption" type="tns:MergeCodeOptions" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeAllSelectionsInAgenda" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="EnforceLayouts" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ApplyTemplatePostBuild" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="MergeCodeOptions">
+        <s:restriction base="s:string">
+          <s:enumeration value="Highlight" />
+          <s:enumeration value="Ignore" />
+          <s:enumeration value="Remove" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="projectBuildResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectBuildResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectBuildDelete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="buildID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectBuildDeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectBuildDeleteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectBuildIsComplete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="buildID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectBuildIsCompleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectBuildIsCompleteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectBuildsList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectBuildsListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectBuildsListResult" type="tns:ArrayOfProjectBuild" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfProjectBuild">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProjectBuild" nillable="true" type="tns:ProjectBuild" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProjectBuild">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AppURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BuildDocs" type="tns:ArrayOfProjectBuildsDocument" />
+          <s:element minOccurs="1" maxOccurs="1" name="BuildID" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="BuildOptions" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedByUserID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreatedByUser" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreatedByEmail" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateSubmitted" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateSubmittedString" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateBuildFinished" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateBuildFinishedString" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateBuildStarted" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateBuildStartedString" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorData" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasErrors" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="PortalURL" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProjectID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SendEmail" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocTypeID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocTypeName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProjectBuildsDocument">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProjectBuildsDocument" nillable="true" type="tns:ProjectBuildsDocument" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProjectBuildsDocument">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="BuildID" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="StorageID" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedByUserID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreatedByUser" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateCreated" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Filename" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FileSize" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileExt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileData" type="s:base64Binary" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProjectID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="projectBuildDeleteFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="buildID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectBuildDocID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectBuildDeleteFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectBuildDeleteFileResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectBuiltDocumentGet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectBuiltDocID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectBuiltDocumentGetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectBuiltDocumentGetResult" type="tns:fileData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="fileData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fileContent" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="projectBuiltDocumentsGetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="buildID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectBuiltDocumentsGetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectBuiltDocumentsGetListResult" type="tns:ArrayOfProjectBuildsDocument" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectDocumentAddFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="comments" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="file" type="tns:fileData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectDocumentAddFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectDocumentAddFileResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectDocumentDeleteFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectDocID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectDocumentDeleteFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectDocumentDeleteFileResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectDocumentGet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectDocID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectDocumentGetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectDocumentGetResult" type="tns:fileData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectDocumentsGetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectDocumentsGetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectDocumentsGetListResult" type="tns:ArrayOfProjectDocument" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfProjectDocument">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProjectDocument" nillable="true" type="tns:ProjectDocument" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProjectDocument">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ProjectDocumentID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProjectID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="BuiltByUserID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocTypeName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateCreated" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MiscFileID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="BuiltByUserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MiscFileDesc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MiscFileExt" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="projectRFPGetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="componentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectRFPGetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectRFPGetListResult" type="tns:ArrayOfRFPProjectFile" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfRFPProjectFile">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RFPProjectFile" nillable="true" type="tns:RFPProjectFile" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RFPProjectFile">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="RFPFileID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProjectID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CompID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="RFPFileName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RFPFileType" type="tns:RFPFileTypeID" />
+          <s:element minOccurs="1" maxOccurs="1" name="DisplayOrder" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MiscFileID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="BuildSeparately" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="OriginalNameOfFile" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OwnerList" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CheckedOutUserID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CheckedOutUserName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MarkedRecordCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasOwners" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsOwner" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsParentOwner" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsAssigned" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsMarked" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsExcelRFP" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="RFPFileTypeID">
+        <s:restriction base="s:string">
+          <s:enumeration value="notSet" />
+          <s:enumeration value="OtherFile" />
+          <s:enumeration value="RFPFile" />
+          <s:enumeration value="ExcelRFPFile" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="projectRFPDocumentAddFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="componentID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="rfpFileTypeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="buildSeparately" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="preserveStyles" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="file" type="tns:fileData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectRFPDocumentAddFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectRFPDocumentAddFileResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectRFPDocumentDeleteFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="componentID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="rfpFileID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectRFPDocumentDeleteFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectRFPDocumentDeleteFileResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectFileListAddFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="componentID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="file" type="tns:fileData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectFileListAddFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectFileListAddFileResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectFileListAddFileByText">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="componentID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectFileListAddFileByTextResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectFileListAddFileByTextResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectFileListGetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="componentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectFileListGetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectFileListGetListResult" type="tns:ArrayOfSelectedFile" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSelectedFile">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SelectedFile" nillable="true" type="tns:SelectedFile" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SelectedFile">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CheckedOutUserID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CompID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContentID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DisplayOrder" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileExt" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FileID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FilePath" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FileType" type="tns:FileTypes" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsBundle" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsCheckedOut" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MiscFileID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OutOfDate" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeInAgenda" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProjectID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Revision" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ThumbMiscFileID" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="FileTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="Content" />
+          <s:enumeration value="MiscFile" />
+          <s:enumeration value="FilePath" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="projectFileListRemoveFiles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="componentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectFileListRemoveFilesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectFileListRemoveFilesResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectSelectionItemGetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="subSectionID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="selectionID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="selectionListID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="selectionItemID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectSelectionItemGetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectSelectionItemGetListResult" type="tns:SelectionItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SelectionItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="GroupList" type="tns:ArrayOfSelectionTreeGroup" />
+          <s:element minOccurs="0" maxOccurs="1" name="ItemList" type="tns:ArrayOfSelectionTreeItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="SelectedGroupList" type="tns:ArrayOfSelectedGroup" />
+          <s:element minOccurs="0" maxOccurs="1" name="SelectedItemList" type="tns:ArrayOfSelectedTreeItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="GroupsForCompleteness" type="tns:ArrayOfSelectionGroupForCompletenessCheck" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSelectionTreeGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SelectionTreeGroup" nillable="true" type="tns:SelectionTreeGroup" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SelectionTreeGroup">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SelectionGroupID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="GroupName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MasterSelectionGroupID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParentSelectionItemID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsShared" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="HelpTipText" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="HierarchyOrder" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SortItemsAlphabetically" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MinTotal" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxTotal" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MinPerParent" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxPerParent" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Required" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Selectable" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsMaster" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Included" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasChildren" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSelectionTreeItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SelectionTreeItem" nillable="true" type="tns:SelectionTreeItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SelectionTreeItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SelectionItemID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParentSelectionGroupID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ItemName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowAlert" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="AlertText" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Selected" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MasterSelectionGroupID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CalculatedDisplayOrder" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="HierarchyOrder" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasChildren" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Expired" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContentFileExt" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSelectedGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SelectedGroup" nillable="true" type="tns:SelectedGroup" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SelectedGroup">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SelectionGroupID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MasterSelectionGroupID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParentSelectionGroupID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParentSelectionItemID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Selected" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="NewSelection" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSelectedTreeItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SelectedTreeItem" nillable="true" type="tns:SelectedTreeItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SelectedTreeItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SelectionItemID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParentSelectionGroupID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParentSelectionItemID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Selected" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MasterSelectionGroupID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NewSelection" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSelectionGroupForCompletenessCheck">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SelectionGroupForCompletenessCheck" nillable="true" type="tns:SelectionGroupForCompletenessCheck" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SelectionGroupForCompletenessCheck">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SelectionGroupID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MasterSelectionGroupID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParentSelectionGroupID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParentSelectionItemID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="GroupMin" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="GroupMax" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MasterMin" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MasterMax" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Selectable" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="projectSelectionItemSetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="subSectionID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="selectionID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="itemList" type="tns:ArrayOfSelectedTreeItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectSelectionItemSetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectSelectionItemSetListResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectSelectionGroupSetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="subSectionID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="selectionID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="itemList" type="tns:ArrayOfSelectedGroup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectSelectionGroupSetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectSelectionGroupSetListResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectStructuredContentFieldCodeGetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="componentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectStructuredContentFieldCodeGetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectStructuredContentFieldCodeGetListResult" type="tns:ArrayOfDynamicContentField" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDynamicContentField">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DynamicContentField" nillable="true" type="tns:DynamicContentField" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DynamicContentField">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CompID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DataType" type="tns:StructuredContentDataType" />
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultDateValue" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultIntValue" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultNumericValue" nillable="true" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="DefaultTextValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DisplayOrder" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DropDownValues" type="tns:ArrayOfDynamicContentItem" />
+          <s:element minOccurs="1" maxOccurs="1" name="Editable" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FieldID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Required" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="SelectionGroupValues" type="tns:ArrayOfDynamicContentSelections" />
+          <s:element minOccurs="1" maxOccurs="1" name="Source" type="tns:StructuredContentFieldDataSources" />
+          <s:element minOccurs="1" maxOccurs="1" name="UseForList" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="UseForSentence" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="StructuredContentDataType">
+        <s:restriction base="s:string">
+          <s:enumeration value="TextField" />
+          <s:enumeration value="NumberField" />
+          <s:enumeration value="CurrencyField" />
+          <s:enumeration value="DateField" />
+          <s:enumeration value="Content" />
+          <s:enumeration value="Formula" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfDynamicContentItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DynamicContentItem" nillable="true" type="tns:DynamicContentItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DynamicContentItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="FieldID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DropdownItemID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DisplayOrder" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DropdownItemText" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContentID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContentTitle" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDynamicContentSelections">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DynamicContentSelections" nillable="true" type="tns:DynamicContentSelections" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DynamicContentSelections">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="FieldID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SelectionGroupID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="StructuredContentFieldDataSources">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSet" />
+          <s:enumeration value="AutoEvaluate" />
+          <s:enumeration value="Formula" />
+          <s:enumeration value="Selections" />
+          <s:enumeration value="CRMAddress1" />
+          <s:enumeration value="CRMAddress2" />
+          <s:enumeration value="CRMCity" />
+          <s:enumeration value="CRMContactID" />
+          <s:enumeration value="CRMCountry" />
+          <s:enumeration value="CRMEmail" />
+          <s:enumeration value="CRMFax" />
+          <s:enumeration value="CRMFirstName" />
+          <s:enumeration value="CRMLastName" />
+          <s:enumeration value="CRMLegalCompName" />
+          <s:enumeration value="CRMMiddleName" />
+          <s:enumeration value="CRMPhone" />
+          <s:enumeration value="CRMSalutation" />
+          <s:enumeration value="CRMShortCompName" />
+          <s:enumeration value="CRMState" />
+          <s:enumeration value="CRMTitle" />
+          <s:enumeration value="CRMZip" />
+          <s:enumeration value="IntegrationSet" />
+          <s:enumeration value="Salesforce" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="projectStructuredContentFieldCodeValuesGetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="componentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectStructuredContentFieldCodeValuesGetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectStructuredContentFieldCodeValuesGetListResult" type="tns:ArrayOfSelectedDynamicContent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSelectedDynamicContent">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SelectedDynamicContent" nillable="true" type="tns:SelectedDynamicContent" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SelectedDynamicContent">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CompID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DisplayOrder" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProjectID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RowID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Values" type="tns:ArrayOfDynamicContentValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDynamicContentValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DynamicContentValue" nillable="true" type="tns:DynamicContentValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DynamicContentValue">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DataType" type="tns:StructuredContentDataType" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateValue" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DropdownItemID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FieldID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IntValue" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumericValue" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="RowID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TextValue" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="projectStructuredContentFieldCodeValueWrite">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="componentID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldCode" type="tns:DynamicContentValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectStructuredContentFieldCodeValueWriteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectStructuredContentFieldCodeValueWriteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectStatusList">
+        <s:complexType />
+      </s:element>
+      <s:element name="projectStatusListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectStatusListResult" type="tns:ArrayOfDropdownItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDropdownItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DropdownItem" nillable="true" type="tns:DropdownItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DropdownItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DisplayOrder" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DropdownTypeID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DropdownValueID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DropdownValueText" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsDefault" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="projectTeamsList">
+        <s:complexType />
+      </s:element>
+      <s:element name="projectTeamsListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectTeamsListResult" type="tns:ArrayOfProjectTeam" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfProjectTeam">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProjectTeam" nillable="true" type="tns:ProjectTeam" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProjectTeam">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IsGlobal" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="TeamDescription" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TeamID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TeamName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="UsageCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserCount" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="projectsRemove">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectIDs" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="projectsRemoveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectsRemoveResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="projectListSoapIn">
+    <wsdl:part name="parameters" element="tns:projectList" />
+  </wsdl:message>
+  <wsdl:message name="projectListSoapOut">
+    <wsdl:part name="parameters" element="tns:projectListResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectArchiveListSoapIn">
+    <wsdl:part name="parameters" element="tns:projectArchiveList" />
+  </wsdl:message>
+  <wsdl:message name="projectArchiveListSoapOut">
+    <wsdl:part name="parameters" element="tns:projectArchiveListResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectArchiveListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectCheckExistsSoapIn">
+    <wsdl:part name="parameters" element="tns:projectCheckExists" />
+  </wsdl:message>
+  <wsdl:message name="projectCheckExistsSoapOut">
+    <wsdl:part name="parameters" element="tns:projectCheckExistsResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectCheckExistsQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectCheckExistsByTitleSoapIn">
+    <wsdl:part name="parameters" element="tns:projectCheckExistsByTitle" />
+  </wsdl:message>
+  <wsdl:message name="projectCheckExistsByTitleSoapOut">
+    <wsdl:part name="parameters" element="tns:projectCheckExistsByTitleResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectCheckExistsByTitleQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectNewSoapIn">
+    <wsdl:part name="parameters" element="tns:projectNew" />
+  </wsdl:message>
+  <wsdl:message name="projectNewSoapOut">
+    <wsdl:part name="parameters" element="tns:projectNewResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectNewQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectAddSoapIn">
+    <wsdl:part name="parameters" element="tns:projectAdd" />
+  </wsdl:message>
+  <wsdl:message name="projectAddSoapOut">
+    <wsdl:part name="parameters" element="tns:projectAddResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectAddQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectRemoveSoapIn">
+    <wsdl:part name="parameters" element="tns:projectRemove" />
+  </wsdl:message>
+  <wsdl:message name="projectRemoveSoapOut">
+    <wsdl:part name="parameters" element="tns:projectRemoveResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectRemoveQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectDetailsGetSoapIn">
+    <wsdl:part name="parameters" element="tns:projectDetailsGet" />
+  </wsdl:message>
+  <wsdl:message name="projectDetailsGetSoapOut">
+    <wsdl:part name="parameters" element="tns:projectDetailsGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectDetailsGetQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectDetailsUpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:projectDetailsUpdate" />
+  </wsdl:message>
+  <wsdl:message name="projectDetailsUpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:projectDetailsUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectDetailsUpdateQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectOwnersSetListSoapIn">
+    <wsdl:part name="parameters" element="tns:projectOwnersSetList" />
+  </wsdl:message>
+  <wsdl:message name="projectOwnersSetListSoapOut">
+    <wsdl:part name="parameters" element="tns:projectOwnersSetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectOwnersSetListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectOwnersGetListSoapIn">
+    <wsdl:part name="parameters" element="tns:projectOwnersGetList" />
+  </wsdl:message>
+  <wsdl:message name="projectOwnersGetListSoapOut">
+    <wsdl:part name="parameters" element="tns:projectOwnersGetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectOwnersGetListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectOptionalScreensGetListSoapIn">
+    <wsdl:part name="parameters" element="tns:projectOptionalScreensGetList" />
+  </wsdl:message>
+  <wsdl:message name="projectOptionalScreensGetListSoapOut">
+    <wsdl:part name="parameters" element="tns:projectOptionalScreensGetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectOptionalScreensGetListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectOptionalScreensSetListSoapIn">
+    <wsdl:part name="parameters" element="tns:projectOptionalScreensSetList" />
+  </wsdl:message>
+  <wsdl:message name="projectOptionalScreensSetListSoapOut">
+    <wsdl:part name="parameters" element="tns:projectOptionalScreensSetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectOptionalScreensSetListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectNavigationGetListSoapIn">
+    <wsdl:part name="parameters" element="tns:projectNavigationGetList" />
+  </wsdl:message>
+  <wsdl:message name="projectNavigationGetListSoapOut">
+    <wsdl:part name="parameters" element="tns:projectNavigationGetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectNavigationGetListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectNavigationDataEntryGetNodeSoapIn">
+    <wsdl:part name="parameters" element="tns:projectNavigationDataEntryGetNode" />
+  </wsdl:message>
+  <wsdl:message name="projectNavigationDataEntryGetNodeSoapOut">
+    <wsdl:part name="parameters" element="tns:projectNavigationDataEntryGetNodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectNavigationDataEntryGetNodeQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectNavigationFileListGetNodeSoapIn">
+    <wsdl:part name="parameters" element="tns:projectNavigationFileListGetNode" />
+  </wsdl:message>
+  <wsdl:message name="projectNavigationFileListGetNodeSoapOut">
+    <wsdl:part name="parameters" element="tns:projectNavigationFileListGetNodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectNavigationFileListGetNodeQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectNavigationRFPGetNodeSoapIn">
+    <wsdl:part name="parameters" element="tns:projectNavigationRFPGetNode" />
+  </wsdl:message>
+  <wsdl:message name="projectNavigationRFPGetNodeSoapOut">
+    <wsdl:part name="parameters" element="tns:projectNavigationRFPGetNodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectNavigationRFPGetNodeQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectNavigationSelectionGetNodeSoapIn">
+    <wsdl:part name="parameters" element="tns:projectNavigationSelectionGetNode" />
+  </wsdl:message>
+  <wsdl:message name="projectNavigationSelectionGetNodeSoapOut">
+    <wsdl:part name="parameters" element="tns:projectNavigationSelectionGetNodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectNavigationSelectionGetNodeQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectNavigationStructuredContentGetNodeSoapIn">
+    <wsdl:part name="parameters" element="tns:projectNavigationStructuredContentGetNode" />
+  </wsdl:message>
+  <wsdl:message name="projectNavigationStructuredContentGetNodeSoapOut">
+    <wsdl:part name="parameters" element="tns:projectNavigationStructuredContentGetNodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectNavigationStructuredContentGetNodeQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectSubSectionOwnersGetListSoapIn">
+    <wsdl:part name="parameters" element="tns:projectSubSectionOwnersGetList" />
+  </wsdl:message>
+  <wsdl:message name="projectSubSectionOwnersGetListSoapOut">
+    <wsdl:part name="parameters" element="tns:projectSubSectionOwnersGetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectSubSectionOwnersGetListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectSubSectionOwnersSetListSoapIn">
+    <wsdl:part name="parameters" element="tns:projectSubSectionOwnersSetList" />
+  </wsdl:message>
+  <wsdl:message name="projectSubSectionOwnersSetListSoapOut">
+    <wsdl:part name="parameters" element="tns:projectSubSectionOwnersSetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectSubSectionOwnersSetListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectDataEntryScreenMergeCodeGetListSoapIn">
+    <wsdl:part name="parameters" element="tns:projectDataEntryScreenMergeCodeGetList" />
+  </wsdl:message>
+  <wsdl:message name="projectDataEntryScreenMergeCodeGetListSoapOut">
+    <wsdl:part name="parameters" element="tns:projectDataEntryScreenMergeCodeGetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectDataEntryScreenMergeCodeGetListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectMergeCodeGetListSoapIn">
+    <wsdl:part name="parameters" element="tns:projectMergeCodeGetList" />
+  </wsdl:message>
+  <wsdl:message name="projectMergeCodeGetListSoapOut">
+    <wsdl:part name="parameters" element="tns:projectMergeCodeGetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectMergeCodeGetListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectPropertyGetSoapIn">
+    <wsdl:part name="parameters" element="tns:projectPropertyGet" />
+  </wsdl:message>
+  <wsdl:message name="projectPropertyGetSoapOut">
+    <wsdl:part name="parameters" element="tns:projectPropertyGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectPropertyGetQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectPropertyGetByCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:projectPropertyGetByCode" />
+  </wsdl:message>
+  <wsdl:message name="projectPropertyGetByCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:projectPropertyGetByCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectPropertyGetByCodeQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectPropertyWriteSoapIn">
+    <wsdl:part name="parameters" element="tns:projectPropertyWrite" />
+  </wsdl:message>
+  <wsdl:message name="projectPropertyWriteSoapOut">
+    <wsdl:part name="parameters" element="tns:projectPropertyWriteResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectPropertyWriteQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectBuildSoapIn">
+    <wsdl:part name="parameters" element="tns:projectBuild" />
+  </wsdl:message>
+  <wsdl:message name="projectBuildSoapOut">
+    <wsdl:part name="parameters" element="tns:projectBuildResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectBuildQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectBuildDeleteSoapIn">
+    <wsdl:part name="parameters" element="tns:projectBuildDelete" />
+  </wsdl:message>
+  <wsdl:message name="projectBuildDeleteSoapOut">
+    <wsdl:part name="parameters" element="tns:projectBuildDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectBuildDeleteQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectBuildIsCompleteSoapIn">
+    <wsdl:part name="parameters" element="tns:projectBuildIsComplete" />
+  </wsdl:message>
+  <wsdl:message name="projectBuildIsCompleteSoapOut">
+    <wsdl:part name="parameters" element="tns:projectBuildIsCompleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectBuildIsCompleteQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectBuildsListSoapIn">
+    <wsdl:part name="parameters" element="tns:projectBuildsList" />
+  </wsdl:message>
+  <wsdl:message name="projectBuildsListSoapOut">
+    <wsdl:part name="parameters" element="tns:projectBuildsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectBuildsListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectBuildDeleteFileSoapIn">
+    <wsdl:part name="parameters" element="tns:projectBuildDeleteFile" />
+  </wsdl:message>
+  <wsdl:message name="projectBuildDeleteFileSoapOut">
+    <wsdl:part name="parameters" element="tns:projectBuildDeleteFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectBuildDeleteFileQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectBuiltDocumentGetSoapIn">
+    <wsdl:part name="parameters" element="tns:projectBuiltDocumentGet" />
+  </wsdl:message>
+  <wsdl:message name="projectBuiltDocumentGetSoapOut">
+    <wsdl:part name="parameters" element="tns:projectBuiltDocumentGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectBuiltDocumentGetQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectBuiltDocumentsGetListSoapIn">
+    <wsdl:part name="parameters" element="tns:projectBuiltDocumentsGetList" />
+  </wsdl:message>
+  <wsdl:message name="projectBuiltDocumentsGetListSoapOut">
+    <wsdl:part name="parameters" element="tns:projectBuiltDocumentsGetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectBuiltDocumentsGetListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectDocumentAddFileSoapIn">
+    <wsdl:part name="parameters" element="tns:projectDocumentAddFile" />
+  </wsdl:message>
+  <wsdl:message name="projectDocumentAddFileSoapOut">
+    <wsdl:part name="parameters" element="tns:projectDocumentAddFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectDocumentAddFileQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectDocumentDeleteFileSoapIn">
+    <wsdl:part name="parameters" element="tns:projectDocumentDeleteFile" />
+  </wsdl:message>
+  <wsdl:message name="projectDocumentDeleteFileSoapOut">
+    <wsdl:part name="parameters" element="tns:projectDocumentDeleteFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectDocumentDeleteFileQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectDocumentGetSoapIn">
+    <wsdl:part name="parameters" element="tns:projectDocumentGet" />
+  </wsdl:message>
+  <wsdl:message name="projectDocumentGetSoapOut">
+    <wsdl:part name="parameters" element="tns:projectDocumentGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectDocumentGetQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectDocumentsGetListSoapIn">
+    <wsdl:part name="parameters" element="tns:projectDocumentsGetList" />
+  </wsdl:message>
+  <wsdl:message name="projectDocumentsGetListSoapOut">
+    <wsdl:part name="parameters" element="tns:projectDocumentsGetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectDocumentsGetListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectRFPGetListSoapIn">
+    <wsdl:part name="parameters" element="tns:projectRFPGetList" />
+  </wsdl:message>
+  <wsdl:message name="projectRFPGetListSoapOut">
+    <wsdl:part name="parameters" element="tns:projectRFPGetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectRFPGetListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectRFPDocumentAddFileSoapIn">
+    <wsdl:part name="parameters" element="tns:projectRFPDocumentAddFile" />
+  </wsdl:message>
+  <wsdl:message name="projectRFPDocumentAddFileSoapOut">
+    <wsdl:part name="parameters" element="tns:projectRFPDocumentAddFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectRFPDocumentAddFileQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectRFPDocumentDeleteFileSoapIn">
+    <wsdl:part name="parameters" element="tns:projectRFPDocumentDeleteFile" />
+  </wsdl:message>
+  <wsdl:message name="projectRFPDocumentDeleteFileSoapOut">
+    <wsdl:part name="parameters" element="tns:projectRFPDocumentDeleteFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectRFPDocumentDeleteFileQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectFileListAddFileSoapIn">
+    <wsdl:part name="parameters" element="tns:projectFileListAddFile" />
+  </wsdl:message>
+  <wsdl:message name="projectFileListAddFileSoapOut">
+    <wsdl:part name="parameters" element="tns:projectFileListAddFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectFileListAddFileQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectFileListAddFileByTextSoapIn">
+    <wsdl:part name="parameters" element="tns:projectFileListAddFileByText" />
+  </wsdl:message>
+  <wsdl:message name="projectFileListAddFileByTextSoapOut">
+    <wsdl:part name="parameters" element="tns:projectFileListAddFileByTextResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectFileListAddFileByTextQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectFileListGetListSoapIn">
+    <wsdl:part name="parameters" element="tns:projectFileListGetList" />
+  </wsdl:message>
+  <wsdl:message name="projectFileListGetListSoapOut">
+    <wsdl:part name="parameters" element="tns:projectFileListGetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectFileListGetListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectFileListRemoveFilesSoapIn">
+    <wsdl:part name="parameters" element="tns:projectFileListRemoveFiles" />
+  </wsdl:message>
+  <wsdl:message name="projectFileListRemoveFilesSoapOut">
+    <wsdl:part name="parameters" element="tns:projectFileListRemoveFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectFileListRemoveFilesQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectSelectionItemGetListSoapIn">
+    <wsdl:part name="parameters" element="tns:projectSelectionItemGetList" />
+  </wsdl:message>
+  <wsdl:message name="projectSelectionItemGetListSoapOut">
+    <wsdl:part name="parameters" element="tns:projectSelectionItemGetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectSelectionItemGetListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectSelectionItemSetListSoapIn">
+    <wsdl:part name="parameters" element="tns:projectSelectionItemSetList" />
+  </wsdl:message>
+  <wsdl:message name="projectSelectionItemSetListSoapOut">
+    <wsdl:part name="parameters" element="tns:projectSelectionItemSetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectSelectionItemSetListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectSelectionGroupSetListSoapIn">
+    <wsdl:part name="parameters" element="tns:projectSelectionGroupSetList" />
+  </wsdl:message>
+  <wsdl:message name="projectSelectionGroupSetListSoapOut">
+    <wsdl:part name="parameters" element="tns:projectSelectionGroupSetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectSelectionGroupSetListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectStructuredContentFieldCodeGetListSoapIn">
+    <wsdl:part name="parameters" element="tns:projectStructuredContentFieldCodeGetList" />
+  </wsdl:message>
+  <wsdl:message name="projectStructuredContentFieldCodeGetListSoapOut">
+    <wsdl:part name="parameters" element="tns:projectStructuredContentFieldCodeGetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectStructuredContentFieldCodeGetListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectStructuredContentFieldCodeValuesGetListSoapIn">
+    <wsdl:part name="parameters" element="tns:projectStructuredContentFieldCodeValuesGetList" />
+  </wsdl:message>
+  <wsdl:message name="projectStructuredContentFieldCodeValuesGetListSoapOut">
+    <wsdl:part name="parameters" element="tns:projectStructuredContentFieldCodeValuesGetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectStructuredContentFieldCodeValuesGetListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectStructuredContentFieldCodeValueWriteSoapIn">
+    <wsdl:part name="parameters" element="tns:projectStructuredContentFieldCodeValueWrite" />
+  </wsdl:message>
+  <wsdl:message name="projectStructuredContentFieldCodeValueWriteSoapOut">
+    <wsdl:part name="parameters" element="tns:projectStructuredContentFieldCodeValueWriteResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectStructuredContentFieldCodeValueWriteQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectStatusListSoapIn">
+    <wsdl:part name="parameters" element="tns:projectStatusList" />
+  </wsdl:message>
+  <wsdl:message name="projectStatusListSoapOut">
+    <wsdl:part name="parameters" element="tns:projectStatusListResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectStatusListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectTeamsListSoapIn">
+    <wsdl:part name="parameters" element="tns:projectTeamsList" />
+  </wsdl:message>
+  <wsdl:message name="projectTeamsListSoapOut">
+    <wsdl:part name="parameters" element="tns:projectTeamsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectTeamsListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:message name="projectsRemoveSoapIn">
+    <wsdl:part name="parameters" element="tns:projectsRemove" />
+  </wsdl:message>
+  <wsdl:message name="projectsRemoveSoapOut">
+    <wsdl:part name="parameters" element="tns:projectsRemoveResponse" />
+  </wsdl:message>
+  <wsdl:message name="projectsRemoveQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader" />
+  </wsdl:message>
+  <wsdl:portType name="ProjectsSoap">
+    <wsdl:operation name="projectList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a list of all active projects for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:projectListSoapIn" />
+      <wsdl:output message="tns:projectListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectArchiveList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a list of all archived projects for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:projectArchiveListSoapIn" />
+      <wsdl:output message="tns:projectArchiveListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectCheckExists">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check that a project ID is valid.</wsdl:documentation>
+      <wsdl:input message="tns:projectCheckExistsSoapIn" />
+      <wsdl:output message="tns:projectCheckExistsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectCheckExistsByTitle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check that a project Title is valid.</wsdl:documentation>
+      <wsdl:input message="tns:projectCheckExistsByTitleSoapIn" />
+      <wsdl:output message="tns:projectCheckExistsByTitleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectNew">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create and initialize a new project class (ProjectInfo).</wsdl:documentation>
+      <wsdl:input message="tns:projectNewSoapIn" />
+      <wsdl:output message="tns:projectNewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectAdd">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add a new project using the attributes provided and returning the new project ID.</wsdl:documentation>
+      <wsdl:input message="tns:projectAddSoapIn" />
+      <wsdl:output message="tns:projectAddSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectRemove">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Remove a project.</wsdl:documentation>
+      <wsdl:input message="tns:projectRemoveSoapIn" />
+      <wsdl:output message="tns:projectRemoveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectDetailsGet">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get project details for a specific project ID.</wsdl:documentation>
+      <wsdl:input message="tns:projectDetailsGetSoapIn" />
+      <wsdl:output message="tns:projectDetailsGetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectDetailsUpdate">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update project details.</wsdl:documentation>
+      <wsdl:input message="tns:projectDetailsUpdateSoapIn" />
+      <wsdl:output message="tns:projectDetailsUpdateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectOwnersSetList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set one (or more) users as owners of a project.</wsdl:documentation>
+      <wsdl:input message="tns:projectOwnersSetListSoapIn" />
+      <wsdl:output message="tns:projectOwnersSetListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectOwnersGetList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a list of all Owner user IDs for a project.</wsdl:documentation>
+      <wsdl:input message="tns:projectOwnersGetListSoapIn" />
+      <wsdl:output message="tns:projectOwnersGetListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectOptionalScreensGetList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a list of Optional screens for a project.</wsdl:documentation>
+      <wsdl:input message="tns:projectOptionalScreensGetListSoapIn" />
+      <wsdl:output message="tns:projectOptionalScreensGetListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectOptionalScreensSetList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update which Optional screens are included for a project.</wsdl:documentation>
+      <wsdl:input message="tns:projectOptionalScreensSetListSoapIn" />
+      <wsdl:output message="tns:projectOptionalScreensSetListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectNavigationGetList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a list of section and sub-sections for the a specific project for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:projectNavigationGetListSoapIn" />
+      <wsdl:output message="tns:projectNavigationGetListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectNavigationDataEntryGetNode">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get the properties for a Data Entry Node for a specific project for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:projectNavigationDataEntryGetNodeSoapIn" />
+      <wsdl:output message="tns:projectNavigationDataEntryGetNodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectNavigationFileListGetNode">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get the properties for a File List Node for a specific project for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:projectNavigationFileListGetNodeSoapIn" />
+      <wsdl:output message="tns:projectNavigationFileListGetNodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectNavigationRFPGetNode">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get the properties for an RFP Node for a specific project for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:projectNavigationRFPGetNodeSoapIn" />
+      <wsdl:output message="tns:projectNavigationRFPGetNodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectNavigationSelectionGetNode">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get the properties for a Selection Node for a specific project for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:projectNavigationSelectionGetNodeSoapIn" />
+      <wsdl:output message="tns:projectNavigationSelectionGetNodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectNavigationStructuredContentGetNode">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get the properties for a Structured Content Node for a specific project for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:projectNavigationStructuredContentGetNodeSoapIn" />
+      <wsdl:output message="tns:projectNavigationStructuredContentGetNodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectSubSectionOwnersGetList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a list of all Owner user IDs for a sub-section for a specified project ID.</wsdl:documentation>
+      <wsdl:input message="tns:projectSubSectionOwnersGetListSoapIn" />
+      <wsdl:output message="tns:projectSubSectionOwnersGetListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectSubSectionOwnersSetList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set one (or more) users as owners of a sub-section within a project.</wsdl:documentation>
+      <wsdl:input message="tns:projectSubSectionOwnersSetListSoapIn" />
+      <wsdl:output message="tns:projectSubSectionOwnersSetListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectDataEntryScreenMergeCodeGetList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a List of Merge Code properties and, optionally, their values for a specific Data Screen within a project for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:projectDataEntryScreenMergeCodeGetListSoapIn" />
+      <wsdl:output message="tns:projectDataEntryScreenMergeCodeGetListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectMergeCodeGetList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a List of all Merge Code properties and, optionally, their values for specific a project for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:projectMergeCodeGetListSoapIn" />
+      <wsdl:output message="tns:projectMergeCodeGetListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectPropertyGet">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a Merge Code property value for a project, based on the property ID.</wsdl:documentation>
+      <wsdl:input message="tns:projectPropertyGetSoapIn" />
+      <wsdl:output message="tns:projectPropertyGetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectPropertyGetByCode">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a Merge Code property value for a project, based on the property code.</wsdl:documentation>
+      <wsdl:input message="tns:projectPropertyGetByCodeSoapIn" />
+      <wsdl:output message="tns:projectPropertyGetByCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectPropertyWrite">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create or update a Merge Code property value for a project.</wsdl:documentation>
+      <wsdl:input message="tns:projectPropertyWriteSoapIn" />
+      <wsdl:output message="tns:projectPropertyWriteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectBuild">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submit a build for a specific project ID.</wsdl:documentation>
+      <wsdl:input message="tns:projectBuildSoapIn" />
+      <wsdl:output message="tns:projectBuildSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectBuildDelete">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Delete a Build for a specific project.</wsdl:documentation>
+      <wsdl:input message="tns:projectBuildDeleteSoapIn" />
+      <wsdl:output message="tns:projectBuildDeleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectBuildIsComplete">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check to see if a build is complete for a specific project ID.</wsdl:documentation>
+      <wsdl:input message="tns:projectBuildIsCompleteSoapIn" />
+      <wsdl:output message="tns:projectBuildIsCompleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectBuildsList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a List of all Project Builds for a specified project for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:projectBuildsListSoapIn" />
+      <wsdl:output message="tns:projectBuildsListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectBuildDeleteFile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Delete a file from a Build for a specific project.</wsdl:documentation>
+      <wsdl:input message="tns:projectBuildDeleteFileSoapIn" />
+      <wsdl:output message="tns:projectBuildDeleteFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectBuiltDocumentGet">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a buit file from a Project build.</wsdl:documentation>
+      <wsdl:input message="tns:projectBuiltDocumentGetSoapIn" />
+      <wsdl:output message="tns:projectBuiltDocumentGetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectBuiltDocumentsGetList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a List of all Project Built Document files for a specific build of a project for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:projectBuiltDocumentsGetListSoapIn" />
+      <wsdl:output message="tns:projectBuiltDocumentsGetListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectDocumentAddFile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add a file as a Project Document to a project.</wsdl:documentation>
+      <wsdl:input message="tns:projectDocumentAddFileSoapIn" />
+      <wsdl:output message="tns:projectDocumentAddFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectDocumentDeleteFile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Delete a Project Document file from a project.</wsdl:documentation>
+      <wsdl:input message="tns:projectDocumentDeleteFileSoapIn" />
+      <wsdl:output message="tns:projectDocumentDeleteFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectDocumentGet">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a file from the Project Documents.</wsdl:documentation>
+      <wsdl:input message="tns:projectDocumentGetSoapIn" />
+      <wsdl:output message="tns:projectDocumentGetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectDocumentsGetList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a List of all Project Document files for a specific project for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:projectDocumentsGetListSoapIn" />
+      <wsdl:output message="tns:projectDocumentsGetListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectRFPGetList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a List of all RFP files for a specific project for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:projectRFPGetListSoapIn" />
+      <wsdl:output message="tns:projectRFPGetListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectRFPDocumentAddFile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add a file to the RFP Project screen for an RFP (only) project.</wsdl:documentation>
+      <wsdl:input message="tns:projectRFPDocumentAddFileSoapIn" />
+      <wsdl:output message="tns:projectRFPDocumentAddFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectRFPDocumentDeleteFile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Delete an RFP Project screen file for an RFP (only) project.</wsdl:documentation>
+      <wsdl:input message="tns:projectRFPDocumentDeleteFileSoapIn" />
+      <wsdl:output message="tns:projectRFPDocumentDeleteFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectFileListAddFile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add a file to a File List screen for a project.</wsdl:documentation>
+      <wsdl:input message="tns:projectFileListAddFileSoapIn" />
+      <wsdl:output message="tns:projectFileListAddFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectFileListAddFileByText">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add a file, passing the contents in as a text string, to a File List screen for a project.</wsdl:documentation>
+      <wsdl:input message="tns:projectFileListAddFileByTextSoapIn" />
+      <wsdl:output message="tns:projectFileListAddFileByTextSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectFileListGetList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a List of all File List files for specific a project for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:projectFileListGetListSoapIn" />
+      <wsdl:output message="tns:projectFileListGetListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectFileListRemoveFiles">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Remove all files for a File List screen for a project.</wsdl:documentation>
+      <wsdl:input message="tns:projectFileListRemoveFilesSoapIn" />
+      <wsdl:output message="tns:projectFileListRemoveFilesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectSelectionItemGetList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a List of all Selection Groups, and each groups Items, for specific a project for the current user based on the parent Selection Item ID.</wsdl:documentation>
+      <wsdl:input message="tns:projectSelectionItemGetListSoapIn" />
+      <wsdl:output message="tns:projectSelectionItemGetListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectSelectionItemSetList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a List of all Selection Items for specific a project for the current user based on the parent Selection Item ID.</wsdl:documentation>
+      <wsdl:input message="tns:projectSelectionItemSetListSoapIn" />
+      <wsdl:output message="tns:projectSelectionItemSetListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectSelectionGroupSetList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a List of all Selection Items for specific a project for the current user based on the parent Selection Item ID.</wsdl:documentation>
+      <wsdl:input message="tns:projectSelectionGroupSetListSoapIn" />
+      <wsdl:output message="tns:projectSelectionGroupSetListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectStructuredContentFieldCodeGetList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a List of Field Code properties for a specific Structured Content Screen within a project for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:projectStructuredContentFieldCodeGetListSoapIn" />
+      <wsdl:output message="tns:projectStructuredContentFieldCodeGetListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectStructuredContentFieldCodeValuesGetList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a List of Field Code values for a specific Structured Content Screen within a project for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:projectStructuredContentFieldCodeValuesGetListSoapIn" />
+      <wsdl:output message="tns:projectStructuredContentFieldCodeValuesGetListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectStructuredContentFieldCodeValueWrite">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update a Field Code value for a specific Structured Content Screen within a project for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:projectStructuredContentFieldCodeValueWriteSoapIn" />
+      <wsdl:output message="tns:projectStructuredContentFieldCodeValueWriteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectStatusList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a list of valid project status's.</wsdl:documentation>
+      <wsdl:input message="tns:projectStatusListSoapIn" />
+      <wsdl:output message="tns:projectStatusListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectTeamsList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a list of valid Project Teams for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:projectTeamsListSoapIn" />
+      <wsdl:output message="tns:projectTeamsListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="projectsRemove">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Remove a list of one or more projects.</wsdl:documentation>
+      <wsdl:input message="tns:projectsRemoveSoapIn" />
+      <wsdl:output message="tns:projectsRemoveSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProjectsSoap" type="tns:ProjectsSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="projectList">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectArchiveList">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectArchiveList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectArchiveListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectArchiveListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectCheckExists">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectCheckExists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectCheckExistsQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectCheckExistsQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectCheckExistsByTitle">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectCheckExistsByTitle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectCheckExistsByTitleQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectCheckExistsByTitleQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectNew">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectNew" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectNewQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectNewQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectAdd">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectAdd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectAddQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectAddQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectRemove">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectRemove" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectRemoveQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectRemoveQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectDetailsGet">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectDetailsGet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectDetailsGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectDetailsGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectDetailsUpdate">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectDetailsUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectDetailsUpdateQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectDetailsUpdateQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectOwnersSetList">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectOwnersSetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectOwnersSetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectOwnersSetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectOwnersGetList">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectOwnersGetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectOwnersGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectOwnersGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectOptionalScreensGetList">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectOptionalScreensGetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectOptionalScreensGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectOptionalScreensGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectOptionalScreensSetList">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectOptionalScreensSetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectOptionalScreensSetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectOptionalScreensSetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectNavigationGetList">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectNavigationGetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectNavigationGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectNavigationGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectNavigationDataEntryGetNode">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectNavigationDataEntryGetNode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectNavigationDataEntryGetNodeQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectNavigationDataEntryGetNodeQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectNavigationFileListGetNode">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectNavigationFileListGetNode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectNavigationFileListGetNodeQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectNavigationFileListGetNodeQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectNavigationRFPGetNode">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectNavigationRFPGetNode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectNavigationRFPGetNodeQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectNavigationRFPGetNodeQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectNavigationSelectionGetNode">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectNavigationSelectionGetNode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectNavigationSelectionGetNodeQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectNavigationSelectionGetNodeQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectNavigationStructuredContentGetNode">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectNavigationStructuredContentGetNode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectNavigationStructuredContentGetNodeQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectNavigationStructuredContentGetNodeQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectSubSectionOwnersGetList">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectSubSectionOwnersGetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectSubSectionOwnersGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectSubSectionOwnersGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectSubSectionOwnersSetList">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectSubSectionOwnersSetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectSubSectionOwnersSetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectSubSectionOwnersSetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectDataEntryScreenMergeCodeGetList">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectDataEntryScreenMergeCodeGetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectDataEntryScreenMergeCodeGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectDataEntryScreenMergeCodeGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectMergeCodeGetList">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectMergeCodeGetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectMergeCodeGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectMergeCodeGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectPropertyGet">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectPropertyGet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectPropertyGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectPropertyGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectPropertyGetByCode">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectPropertyGetByCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectPropertyGetByCodeQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectPropertyGetByCodeQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectPropertyWrite">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectPropertyWrite" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectPropertyWriteQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectPropertyWriteQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectBuild">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectBuild" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectBuildQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectBuildQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectBuildDelete">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectBuildDelete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectBuildDeleteQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectBuildDeleteQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectBuildIsComplete">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectBuildIsComplete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectBuildIsCompleteQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectBuildIsCompleteQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectBuildsList">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectBuildsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectBuildsListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectBuildsListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectBuildDeleteFile">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectBuildDeleteFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectBuildDeleteFileQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectBuildDeleteFileQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectBuiltDocumentGet">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectBuiltDocumentGet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectBuiltDocumentGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectBuiltDocumentGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectBuiltDocumentsGetList">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectBuiltDocumentsGetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectBuiltDocumentsGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectBuiltDocumentsGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectDocumentAddFile">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectDocumentAddFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectDocumentAddFileQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectDocumentAddFileQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectDocumentDeleteFile">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectDocumentDeleteFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectDocumentDeleteFileQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectDocumentDeleteFileQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectDocumentGet">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectDocumentGet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectDocumentGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectDocumentGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectDocumentsGetList">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectDocumentsGetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectDocumentsGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectDocumentsGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectRFPGetList">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectRFPGetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectRFPGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectRFPGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectRFPDocumentAddFile">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectRFPDocumentAddFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectRFPDocumentAddFileQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectRFPDocumentAddFileQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectRFPDocumentDeleteFile">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectRFPDocumentDeleteFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectRFPDocumentDeleteFileQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectRFPDocumentDeleteFileQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectFileListAddFile">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectFileListAddFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectFileListAddFileQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectFileListAddFileQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectFileListAddFileByText">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectFileListAddFileByText" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectFileListAddFileByTextQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectFileListAddFileByTextQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectFileListGetList">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectFileListGetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectFileListGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectFileListGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectFileListRemoveFiles">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectFileListRemoveFiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectFileListRemoveFilesQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectFileListRemoveFilesQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectSelectionItemGetList">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectSelectionItemGetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectSelectionItemGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectSelectionItemGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectSelectionItemSetList">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectSelectionItemSetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectSelectionItemSetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectSelectionItemSetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectSelectionGroupSetList">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectSelectionGroupSetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectSelectionGroupSetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectSelectionGroupSetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectStructuredContentFieldCodeGetList">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectStructuredContentFieldCodeGetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectStructuredContentFieldCodeGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectStructuredContentFieldCodeGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectStructuredContentFieldCodeValuesGetList">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectStructuredContentFieldCodeValuesGetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectStructuredContentFieldCodeValuesGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectStructuredContentFieldCodeValuesGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectStructuredContentFieldCodeValueWrite">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectStructuredContentFieldCodeValueWrite" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectStructuredContentFieldCodeValueWriteQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectStructuredContentFieldCodeValueWriteQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectStatusList">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectStatusList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectStatusListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectStatusListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectTeamsList">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectTeamsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectTeamsListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectTeamsListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectsRemove">
+      <soap:operation soapAction="http://qvidian.com/webservices/projectsRemove" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectsRemoveQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:projectsRemoveQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ProjectsSoap12" type="tns:ProjectsSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="projectList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectArchiveList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectArchiveList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectArchiveListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectArchiveListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectCheckExists">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectCheckExists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectCheckExistsQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectCheckExistsQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectCheckExistsByTitle">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectCheckExistsByTitle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectCheckExistsByTitleQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectCheckExistsByTitleQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectNew">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectNew" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectNewQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectNewQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectAdd">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectAdd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectAddQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectAddQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectRemove">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectRemove" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectRemoveQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectRemoveQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectDetailsGet">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectDetailsGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectDetailsGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectDetailsGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectDetailsUpdate">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectDetailsUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectDetailsUpdateQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectDetailsUpdateQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectOwnersSetList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectOwnersSetList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectOwnersSetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectOwnersSetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectOwnersGetList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectOwnersGetList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectOwnersGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectOwnersGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectOptionalScreensGetList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectOptionalScreensGetList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectOptionalScreensGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectOptionalScreensGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectOptionalScreensSetList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectOptionalScreensSetList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectOptionalScreensSetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectOptionalScreensSetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectNavigationGetList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectNavigationGetList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectNavigationGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectNavigationGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectNavigationDataEntryGetNode">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectNavigationDataEntryGetNode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectNavigationDataEntryGetNodeQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectNavigationDataEntryGetNodeQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectNavigationFileListGetNode">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectNavigationFileListGetNode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectNavigationFileListGetNodeQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectNavigationFileListGetNodeQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectNavigationRFPGetNode">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectNavigationRFPGetNode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectNavigationRFPGetNodeQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectNavigationRFPGetNodeQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectNavigationSelectionGetNode">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectNavigationSelectionGetNode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectNavigationSelectionGetNodeQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectNavigationSelectionGetNodeQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectNavigationStructuredContentGetNode">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectNavigationStructuredContentGetNode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectNavigationStructuredContentGetNodeQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectNavigationStructuredContentGetNodeQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectSubSectionOwnersGetList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectSubSectionOwnersGetList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectSubSectionOwnersGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectSubSectionOwnersGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectSubSectionOwnersSetList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectSubSectionOwnersSetList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectSubSectionOwnersSetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectSubSectionOwnersSetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectDataEntryScreenMergeCodeGetList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectDataEntryScreenMergeCodeGetList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectDataEntryScreenMergeCodeGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectDataEntryScreenMergeCodeGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectMergeCodeGetList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectMergeCodeGetList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectMergeCodeGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectMergeCodeGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectPropertyGet">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectPropertyGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectPropertyGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectPropertyGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectPropertyGetByCode">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectPropertyGetByCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectPropertyGetByCodeQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectPropertyGetByCodeQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectPropertyWrite">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectPropertyWrite" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectPropertyWriteQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectPropertyWriteQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectBuild">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectBuild" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectBuildQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectBuildQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectBuildDelete">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectBuildDelete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectBuildDeleteQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectBuildDeleteQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectBuildIsComplete">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectBuildIsComplete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectBuildIsCompleteQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectBuildIsCompleteQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectBuildsList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectBuildsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectBuildsListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectBuildsListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectBuildDeleteFile">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectBuildDeleteFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectBuildDeleteFileQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectBuildDeleteFileQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectBuiltDocumentGet">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectBuiltDocumentGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectBuiltDocumentGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectBuiltDocumentGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectBuiltDocumentsGetList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectBuiltDocumentsGetList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectBuiltDocumentsGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectBuiltDocumentsGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectDocumentAddFile">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectDocumentAddFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectDocumentAddFileQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectDocumentAddFileQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectDocumentDeleteFile">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectDocumentDeleteFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectDocumentDeleteFileQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectDocumentDeleteFileQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectDocumentGet">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectDocumentGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectDocumentGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectDocumentGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectDocumentsGetList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectDocumentsGetList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectDocumentsGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectDocumentsGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectRFPGetList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectRFPGetList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectRFPGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectRFPGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectRFPDocumentAddFile">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectRFPDocumentAddFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectRFPDocumentAddFileQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectRFPDocumentAddFileQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectRFPDocumentDeleteFile">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectRFPDocumentDeleteFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectRFPDocumentDeleteFileQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectRFPDocumentDeleteFileQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectFileListAddFile">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectFileListAddFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectFileListAddFileQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectFileListAddFileQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectFileListAddFileByText">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectFileListAddFileByText" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectFileListAddFileByTextQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectFileListAddFileByTextQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectFileListGetList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectFileListGetList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectFileListGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectFileListGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectFileListRemoveFiles">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectFileListRemoveFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectFileListRemoveFilesQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectFileListRemoveFilesQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectSelectionItemGetList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectSelectionItemGetList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectSelectionItemGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectSelectionItemGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectSelectionItemSetList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectSelectionItemSetList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectSelectionItemSetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectSelectionItemSetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectSelectionGroupSetList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectSelectionGroupSetList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectSelectionGroupSetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectSelectionGroupSetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectStructuredContentFieldCodeGetList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectStructuredContentFieldCodeGetList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectStructuredContentFieldCodeGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectStructuredContentFieldCodeGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectStructuredContentFieldCodeValuesGetList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectStructuredContentFieldCodeValuesGetList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectStructuredContentFieldCodeValuesGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectStructuredContentFieldCodeValuesGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectStructuredContentFieldCodeValueWrite">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectStructuredContentFieldCodeValueWrite" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectStructuredContentFieldCodeValueWriteQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectStructuredContentFieldCodeValueWriteQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectStatusList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectStatusList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectStatusListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectStatusListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectTeamsList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectTeamsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectTeamsListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectTeamsListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="projectsRemove">
+      <soap12:operation soapAction="http://qvidian.com/webservices/projectsRemove" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectsRemoveQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:projectsRemoveQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Projects">
+    <wsdl:port name="ProjectsSoap" binding="tns:ProjectsSoap">
+      <soap:address location="http://localhost/Qvidian.WS/Projects.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ProjectsSoap12" binding="tns:ProjectsSoap12">
+      <soap12:address location="http://localhost/Qvidian.WS/Projects.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,638 @@
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://qvidian.com/webservices/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://qvidian.com/webservices/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://qvidian.com/webservices/">
+      <s:import namespace="http://microsoft.com/wsdl/types/"/>
+      <s:element name="HasPermissions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Permission" type="tns:MasterPermissions"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="MasterPermissions">
+        <s:restriction base="s:string">
+          <s:enumeration value="LMDocuments"/>
+          <s:enumeration value="User"/>
+          <s:enumeration value="Templates"/>
+          <s:enumeration value="UseCustomItems"/>
+          <s:enumeration value="Reporting"/>
+          <s:enumeration value="CreateProjects"/>
+          <s:enumeration value="EditReplaceCodes"/>
+          <s:enumeration value="ManageViews"/>
+          <s:enumeration value="CRM"/>
+          <s:enumeration value="AssignQuestions"/>
+          <s:enumeration value="ENTriggerSetUp"/>
+          <s:enumeration value="ENSeeGeneratedByMe"/>
+          <s:enumeration value="ManageKWs"/>
+          <s:enumeration value="UserCanChangeBasicPersInfo"/>
+          <s:enumeration value="ENMessageManagement"/>
+          <s:enumeration value="EditEnabledContent"/>
+          <s:enumeration value="ViewSearchEnabledContent"/>
+          <s:enumeration value="SubmitAllFolders"/>
+          <s:enumeration value="CreateNewReports"/>
+          <s:enumeration value="DropLists"/>
+          <s:enumeration value="ManageOwnProjects"/>
+          <s:enumeration value="ManageAllProjects"/>
+          <s:enumeration value="DeleteProjects"/>
+          <s:enumeration value="AssignReports"/>
+          <s:enumeration value="ManageExternalSystems"/>
+          <s:enumeration value="RepositoryUse"/>
+          <s:enumeration value="RepositoryDeleteFiles"/>
+          <s:enumeration value="RepositoryPromoteFiles"/>
+          <s:enumeration value="ManageWelcomeScreen"/>
+          <s:enumeration value="ConnectFromSalesForce"/>
+          <s:enumeration value="ProSearchAbleToSubmit"/>
+          <s:enumeration value="ManageNewsandAnnouncement"/>
+          <s:enumeration value="Branding"/>
+          <s:enumeration value="GlobalSettings"/>
+          <s:enumeration value="ArchiveProjects"/>
+          <s:enumeration value="GlobalLinks"/>
+          <s:enumeration value="GlobalProjectTeams"/>
+          <s:enumeration value="ManageLibrary"/>
+          <s:enumeration value="ManageProviderSettings"/>
+          <s:enumeration value="EditAllContent"/>
+          <s:enumeration value="ViewSearchAllContent"/>
+          <s:enumeration value="ManageSalesForce"/>
+          <s:enumeration value="ManageCustomMetadata"/>
+          <s:enumeration value="ManageSavedSearches"/>
+          <s:enumeration value="ManageProductFeedback"/>
+          <s:enumeration value="LoginSecurityAdministration"/>
+          <s:enumeration value="SystemFeedbackRecipient"/>
+          <s:enumeration value="ContentFeedbackDefaultRecipient"/>
+          <s:enumeration value="ViewEventAuditing"/>
+          <s:enumeration value="ManageEventAuditing"/>
+          <s:enumeration value="UseProductFeedback"/>
+          <s:enumeration value="SMEEmailBody"/>
+          <s:enumeration value="ManageGeneratedURLs"/>
+          <s:enumeration value="AllowPreviewHTML"/>
+          <s:enumeration value="ManageIPFiltering"/>
+          <s:enumeration value="ManageAllJobs"/>
+          <s:enumeration value="ShareSuggestedSearch"/>
+          <s:enumeration value="AssignProjects"/>
+          <s:enumeration value="ManagePlaybooksSettings"/>
+          <s:enumeration value="AllowNewLibraryAccess"/>
+          <s:enumeration value="AllowAnalyticsAccess"/>
+          <s:enumeration value="ShareLibrarySearch"/>
+          <s:enumeration value="ManageProjectTeams"/>
+          <s:enumeration value="PreventCustomDocumentAssignment"/>
+          <s:enumeration value="AllowClassicLibraryAccess"/>
+          <s:enumeration value="ViewAllFeedback"/>
+          <s:enumeration value="ContentManager"/>
+          <s:enumeration value="AllowVisualizerAccess"/>
+          <s:enumeration value="AllowSendToContributors"/>
+          <s:enumeration value="CanManageOtherReviewJobs"/>
+          <s:enumeration value="CanReviewContent"/>
+          <s:enumeration value="LimitedCollaboration"/>
+          <s:enumeration value="RFPParticipant"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="HasPermissionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="HasPermissionsResult" type="s:boolean"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QvidianCredentialHeader" type="tns:QvidianCredentialHeader"/>
+      <s:complexType name="QvidianCredentialHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AuthenticationToken" type="s:string"/>
+        </s:sequence>
+        <s:anyAttribute/>
+      </s:complexType>
+      <s:element name="dropDownItemsGetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="propertyID" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="dropDownItemsGetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dropDownItemsGetListResult" type="tns:ArrayOfEditReplaceItem"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEditReplaceItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EditReplaceItem" nillable="true" type="tns:EditReplaceItem"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EditReplaceItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DisplayOrder" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="ERID" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ERText" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="dropDownItemDelete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dropDownItem" type="tns:EditReplaceItem"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="dropDownItemDeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dropDownItemDeleteResult" type="s:boolean"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="docTypeList">
+        <s:complexType/>
+      </s:element>
+      <s:element name="docTypeListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="docTypeListResult" type="tns:ArrayOfDocType"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDocType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DocType" nillable="true" type="tns:DocType"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DocType">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="AllowArchitect" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="AllowEdit" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="BuildMode" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="BuildToPDF" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="CreatedName" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="DateCreated" type="s:dateTime"/>
+          <s:element minOccurs="0" maxOccurs="1" name="DateCreatedString" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="DateLastUsed" nillable="true" type="s:dateTime"/>
+          <s:element minOccurs="0" maxOccurs="1" name="DateLastUsedString" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="DisplayOrder" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultLibraryFolderID" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="DefaultLibraryFolder" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="DocTypeID" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="DynamicSelectionItems" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="Enabled" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ExampleFileExt" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="ExampleFileMiscFileId" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="Hidden" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="LockBuild" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="NumTimesUsed" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="PB" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="PreventExternalSlides" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="ProjectUsage" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="SectionMode" type="s:boolean"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DocTypeProps">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:DocType">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="LibraryFolderTitle" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="PrimaryTitleExample" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="SecondaryTitleExample" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="PrimarySource" type="tns:ArrayOfPrimarySourceItem"/>
+              <s:element minOccurs="1" maxOccurs="1" name="TitleGroupID" type="s:int"/>
+              <s:element minOccurs="1" maxOccurs="1" name="ArchitectPermission" type="s:boolean"/>
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfPrimarySourceItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PrimarySourceItem" nillable="true" type="tns:PrimarySourceItem"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PrimarySourceItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayName" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="SelectionGroupID" type="s:int"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="templateList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="docTypeID" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="templateListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="templateListResult" type="tns:ArrayOfTemplate"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTemplate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Template" nillable="true" type="tns:Template"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Template">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MiscFileID" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="CheckedOutUserID" nillable="true" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="CheckedOutUserName" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="TemplateDate" type="s:dateTime"/>
+          <s:element minOccurs="1" maxOccurs="1" name="TemplateID" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="TemplateName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="OriginalFileName" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="TemplateType" type="tns:TemplateTypes"/>
+          <s:element minOccurs="1" maxOccurs="1" name="TemplateGUID" type="s1:guid"/>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TemplateTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="Word"/>
+          <s:enumeration value="PowerPoint"/>
+          <s:enumeration value="Word2007"/>
+          <s:enumeration value="PowerPoint2007"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="reportExecuteExcelGet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="reportID" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="reportExecuteExcelGetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="reportExecuteExcelGetResult" type="tns:fileDataEx"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="fileDataEx">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="fileContent" type="s:base64Binary"/>
+          <s:element minOccurs="1" maxOccurs="1" name="hasErrors" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="errorCodes" type="tns:ArrayOfInt"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="reportExecuteWithParamsExcelGet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="reportID" type="s:int"/>
+            <s:element minOccurs="0" maxOccurs="1" name="reportParams" type="tns:ArrayOfReportParameter"/>
+            <s:element minOccurs="1" maxOccurs="1" name="storeParams" type="s:boolean"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfReportParameter">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ReportParameter" nillable="true" type="tns:ReportParameter"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReportParameter">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="hasErrors" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="errorCodes" type="tns:ArrayOfInt"/>
+          <s:element minOccurs="1" maxOccurs="1" name="ReportID" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ParameterText" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ParameterValue" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="reportExecuteWithParamsExcelGetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="reportExecuteWithParamsExcelGetResult" type="tns:fileDataEx"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="reportParamsSave">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="reportParams" type="tns:ArrayOfReportParameter"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="reportParamsSaveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="reportParamsSaveResult" type="tns:ArrayOfReportParameter"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"/>
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HasPermissionsSoapIn">
+    <wsdl:part name="parameters" element="tns:HasPermissions"/>
+  </wsdl:message>
+  <wsdl:message name="HasPermissionsSoapOut">
+    <wsdl:part name="parameters" element="tns:HasPermissionsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="HasPermissionsQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader"/>
+  </wsdl:message>
+  <wsdl:message name="dropDownItemsGetListSoapIn">
+    <wsdl:part name="parameters" element="tns:dropDownItemsGetList"/>
+  </wsdl:message>
+  <wsdl:message name="dropDownItemsGetListSoapOut">
+    <wsdl:part name="parameters" element="tns:dropDownItemsGetListResponse"/>
+  </wsdl:message>
+  <wsdl:message name="dropDownItemsGetListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader"/>
+  </wsdl:message>
+  <wsdl:message name="dropDownItemDeleteSoapIn">
+    <wsdl:part name="parameters" element="tns:dropDownItemDelete"/>
+  </wsdl:message>
+  <wsdl:message name="dropDownItemDeleteSoapOut">
+    <wsdl:part name="parameters" element="tns:dropDownItemDeleteResponse"/>
+  </wsdl:message>
+  <wsdl:message name="dropDownItemDeleteQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader"/>
+  </wsdl:message>
+  <wsdl:message name="docTypeListSoapIn">
+    <wsdl:part name="parameters" element="tns:docTypeList"/>
+  </wsdl:message>
+  <wsdl:message name="docTypeListSoapOut">
+    <wsdl:part name="parameters" element="tns:docTypeListResponse"/>
+  </wsdl:message>
+  <wsdl:message name="docTypeListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader"/>
+  </wsdl:message>
+  <wsdl:message name="templateListSoapIn">
+    <wsdl:part name="parameters" element="tns:templateList"/>
+  </wsdl:message>
+  <wsdl:message name="templateListSoapOut">
+    <wsdl:part name="parameters" element="tns:templateListResponse"/>
+  </wsdl:message>
+  <wsdl:message name="templateListQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader"/>
+  </wsdl:message>
+  <wsdl:message name="reportExecuteExcelGetSoapIn">
+    <wsdl:part name="parameters" element="tns:reportExecuteExcelGet"/>
+  </wsdl:message>
+  <wsdl:message name="reportExecuteExcelGetSoapOut">
+    <wsdl:part name="parameters" element="tns:reportExecuteExcelGetResponse"/>
+  </wsdl:message>
+  <wsdl:message name="reportExecuteExcelGetQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader"/>
+  </wsdl:message>
+  <wsdl:message name="reportExecuteWithParamsExcelGetSoapIn">
+    <wsdl:part name="parameters" element="tns:reportExecuteWithParamsExcelGet"/>
+  </wsdl:message>
+  <wsdl:message name="reportExecuteWithParamsExcelGetSoapOut">
+    <wsdl:part name="parameters" element="tns:reportExecuteWithParamsExcelGetResponse"/>
+  </wsdl:message>
+  <wsdl:message name="reportExecuteWithParamsExcelGetQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader"/>
+  </wsdl:message>
+  <wsdl:message name="reportParamsSaveSoapIn">
+    <wsdl:part name="parameters" element="tns:reportParamsSave"/>
+  </wsdl:message>
+  <wsdl:message name="reportParamsSaveSoapOut">
+    <wsdl:part name="parameters" element="tns:reportParamsSaveResponse"/>
+  </wsdl:message>
+  <wsdl:message name="reportParamsSaveQvidianCredentialHeader">
+    <wsdl:part name="QvidianCredentialHeader" element="tns:QvidianCredentialHeader"/>
+  </wsdl:message>
+  <wsdl:portType name="CommonSoap">
+    <wsdl:operation name="HasPermissions">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check to see if the user has a specific permission or not.</wsdl:documentation>
+      <wsdl:input message="tns:HasPermissionsSoapIn"/>
+      <wsdl:output message="tns:HasPermissionsSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="dropDownItemsGetList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a list of Drop Down items for a specific Merge Code field.</wsdl:documentation>
+      <wsdl:input message="tns:dropDownItemsGetListSoapIn"/>
+      <wsdl:output message="tns:dropDownItemsGetListSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="dropDownItemDelete">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Delete a Drop Down item.</wsdl:documentation>
+      <wsdl:input message="tns:dropDownItemDeleteSoapIn"/>
+      <wsdl:output message="tns:dropDownItemDeleteSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="docTypeList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a list of valid Document Types for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:docTypeListSoapIn"/>
+      <wsdl:output message="tns:docTypeListSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="templateList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a list of valid templates for a specific document type for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:templateListSoapIn"/>
+      <wsdl:output message="tns:templateListSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="reportExecuteExcelGet">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Execute a Report as the current user and return the results in an Excel file.</wsdl:documentation>
+      <wsdl:input message="tns:reportExecuteExcelGetSoapIn"/>
+      <wsdl:output message="tns:reportExecuteExcelGetSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="reportExecuteWithParamsExcelGet">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Execute a Report, using the supplied paramaters, as the current user and return the results in an Excel file. Optionally store the paramaters for future Report queries.</wsdl:documentation>
+      <wsdl:input message="tns:reportExecuteWithParamsExcelGetSoapIn"/>
+      <wsdl:output message="tns:reportExecuteWithParamsExcelGetSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="reportParamsSave">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Save Report paramaters.</wsdl:documentation>
+      <wsdl:input message="tns:reportParamsSaveSoapIn"/>
+      <wsdl:output message="tns:reportParamsSaveSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CommonSoap" type="tns:CommonSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="HasPermissions">
+      <soap:operation soapAction="http://qvidian.com/webservices/HasPermissions" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:HasPermissionsQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+        <soap:header message="tns:HasPermissionsQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="dropDownItemsGetList">
+      <soap:operation soapAction="http://qvidian.com/webservices/dropDownItemsGetList" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:dropDownItemsGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+        <soap:header message="tns:dropDownItemsGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="dropDownItemDelete">
+      <soap:operation soapAction="http://qvidian.com/webservices/dropDownItemDelete" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:dropDownItemDeleteQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+        <soap:header message="tns:dropDownItemDeleteQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="docTypeList">
+      <soap:operation soapAction="http://qvidian.com/webservices/docTypeList" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:docTypeListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+        <soap:header message="tns:docTypeListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="templateList">
+      <soap:operation soapAction="http://qvidian.com/webservices/templateList" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:templateListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+        <soap:header message="tns:templateListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reportExecuteExcelGet">
+      <soap:operation soapAction="http://qvidian.com/webservices/reportExecuteExcelGet" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:reportExecuteExcelGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+        <soap:header message="tns:reportExecuteExcelGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reportExecuteWithParamsExcelGet">
+      <soap:operation soapAction="http://qvidian.com/webservices/reportExecuteWithParamsExcelGet" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:reportExecuteWithParamsExcelGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+        <soap:header message="tns:reportExecuteWithParamsExcelGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reportParamsSave">
+      <soap:operation soapAction="http://qvidian.com/webservices/reportParamsSave" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:reportParamsSaveQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+        <soap:header message="tns:reportParamsSaveQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CommonSoap12" type="tns:CommonSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="HasPermissions">
+      <soap12:operation soapAction="http://qvidian.com/webservices/HasPermissions" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:HasPermissionsQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:HasPermissionsQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="dropDownItemsGetList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/dropDownItemsGetList" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:dropDownItemsGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:dropDownItemsGetListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="dropDownItemDelete">
+      <soap12:operation soapAction="http://qvidian.com/webservices/dropDownItemDelete" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:dropDownItemDeleteQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:dropDownItemDeleteQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="docTypeList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/docTypeList" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:docTypeListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:docTypeListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="templateList">
+      <soap12:operation soapAction="http://qvidian.com/webservices/templateList" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:templateListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:templateListQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reportExecuteExcelGet">
+      <soap12:operation soapAction="http://qvidian.com/webservices/reportExecuteExcelGet" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:reportExecuteExcelGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:reportExecuteExcelGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reportExecuteWithParamsExcelGet">
+      <soap12:operation soapAction="http://qvidian.com/webservices/reportExecuteWithParamsExcelGet" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:reportExecuteWithParamsExcelGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:reportExecuteWithParamsExcelGetQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reportParamsSave">
+      <soap12:operation soapAction="http://qvidian.com/webservices/reportParamsSave" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:reportParamsSaveQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:reportParamsSaveQvidianCredentialHeader" part="QvidianCredentialHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Common">
+    <wsdl:port name="CommonSoap" binding="tns:CommonSoap">
+      <soap:address location="https://qpa.qvidian.com/qpa_ws_10_8_2000_0013/Common.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="CommonSoap12" binding="tns:CommonSoap12">
+      <soap12:address location="http://localhost/Qvidian.WS/Common.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
