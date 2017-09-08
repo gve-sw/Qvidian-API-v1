@@ -1,5 +1,5 @@
-# qvidianapi
-A Nice Python API to [Qvidian.com](http://Qvidian.com/)
+# Qvidianapi V1
+A Nice Python API V1 to [Qvidian.com](http://Qvidian.com/)
 
 # Install
 Install Python [PIP](https://packaging.python.org/installing/).
